@@ -12,6 +12,7 @@
 		58604C392D5A058F0064B27C /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C372D5A058F0064B27C /* graphics.cpp */; };
 		58604C3C2D5A061F0064B27C /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C3A2D5A061F0064B27C /* board.cpp */; };
 		58604C3F2D5A063D0064B27C /* pikachu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C3D2D5A063D0064B27C /* pikachu.cpp */; };
+		58604C692D5A10ED0064B27C /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C672D5A10ED0064B27C /* SoundManager.cpp */; };
 		58F550322D578FF90032DC99 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58F550312D578FF90032DC99 /* main.cpp */; };
 		58F5503A2D5792B60032DC99 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F550392D5792B60032DC99 /* libSDL2-2.0.0.dylib */; };
 		58F5503C2D579AAE0032DC99 /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F5503B2D579AAE0032DC99 /* libSDL2_ttf-2.0.0.dylib */; };
@@ -76,6 +77,13 @@
 		58604C632D5A0CB90064B27C /* pikachu_image28.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikachu_image28.png; path = assets/image/pikachu_image28.png; sourceTree = SOURCE_ROOT; };
 		58604C642D5A0CB90064B27C /* pikachu_image27.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikachu_image27.png; path = assets/image/pikachu_image27.png; sourceTree = SOURCE_ROOT; };
 		58604C652D5A0CB90064B27C /* pikachu_image16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikachu_image16.png; path = assets/image/pikachu_image16.png; sourceTree = SOURCE_ROOT; };
+		58604C672D5A10ED0064B27C /* SoundManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
+		58604C682D5A10ED0064B27C /* SoundManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SoundManager.hpp; sourceTree = "<group>"; };
+		58604C6A2D5A12360064B27C /* no_move.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = no_move.mp3; sourceTree = "<group>"; };
+		58604C6B2D5A12360064B27C /* linked.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = linked.mp3; sourceTree = "<group>"; };
+		58604C6C2D5A12360064B27C /* oho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = oho.mp3; sourceTree = "<group>"; };
+		58604C6D2D5A12360064B27C /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click.mp3; sourceTree = "<group>"; };
+		58604C6E2D5A12360064B27C /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		58F5502E2D578FF90032DC99 /* SDL2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDL2; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F550312D578FF90032DC99 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		58F550392D5792B60032DC99 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/homebrew/Cellar/sdl2/2.30.12/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -114,6 +122,8 @@
 				58604C3B2D5A061F0064B27C /* board.hpp */,
 				58604C3D2D5A063D0064B27C /* pikachu.cpp */,
 				58604C3E2D5A063D0064B27C /* pikachu.hpp */,
+				58604C672D5A10ED0064B27C /* SoundManager.cpp */,
+				58604C682D5A10ED0064B27C /* SoundManager.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -128,6 +138,7 @@
 		58604C302D59CEC70064B27C /* assests */ = {
 			isa = PBXGroup;
 			children = (
+				58604C662D5A0F9D0064B27C /* sounds */,
 				58604C402D5A06770064B27C /* image */,
 			);
 			path = assests;
@@ -175,6 +186,19 @@
 			);
 			path = image;
 			sourceTree = "<group>";
+		};
+		58604C662D5A0F9D0064B27C /* sounds */ = {
+			isa = PBXGroup;
+			children = (
+				58604C6D2D5A12360064B27C /* click.mp3 */,
+				58604C6B2D5A12360064B27C /* linked.mp3 */,
+				58604C6A2D5A12360064B27C /* no_move.mp3 */,
+				58604C6C2D5A12360064B27C /* oho.mp3 */,
+				58604C6E2D5A12360064B27C /* win.mp3 */,
+			);
+			name = sounds;
+			path = assets/sounds;
+			sourceTree = SOURCE_ROOT;
 		};
 		58F550252D578FF90032DC99 = {
 			isa = PBXGroup;
@@ -313,6 +337,7 @@
 				58604C3C2D5A061F0064B27C /* board.cpp in Sources */,
 				58F550322D578FF90032DC99 /* main.cpp in Sources */,
 				58604C392D5A058F0064B27C /* graphics.cpp in Sources */,
+				58604C692D5A10ED0064B27C /* SoundManager.cpp in Sources */,
 				58604C362D5A05740064B27C /* defs.cpp in Sources */,
 				58604C3F2D5A063D0064B27C /* pikachu.cpp in Sources */,
 			);
