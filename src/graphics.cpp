@@ -14,7 +14,7 @@ bool Graphics::init(){
         cout<<"SDL error"<<SDL_GetError()<<endl;
         return false;
     }
-    window=SDL_CreateWindow("Pikachu Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1000, 900, SDL_WINDOW_SHOWN);
+    window=SDL_CreateWindow("Pikachu Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 950, SDL_WINDOW_SHOWN);
     if(!window){
         cout<<"Can't open the window,error"<<SDL_GetError()<<endl;
         return false;

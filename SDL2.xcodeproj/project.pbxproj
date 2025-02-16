@@ -35,6 +35,23 @@
 		583777602D601D6200A03937 /* guide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guide.png; sourceTree = "<group>"; };
 		583777622D60398C00A03937 /* backgroundGuide.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = backgroundGuide.jpeg; sourceTree = "<group>"; };
 		583777632D603C4700A03937 /* close.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close.png; sourceTree = "<group>"; };
+		583777642D60B0DF00A03937 /* pokemonBackground2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pokemonBackground2.jpeg; sourceTree = "<group>"; };
+		583777662D60D08400A03937 /* bookGuide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bookGuide.png; sourceTree = "<group>"; };
+		583777672D60D08400A03937 /* 4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 4.png; sourceTree = "<group>"; };
+		583777682D60D08400A03937 /* swap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = swap.png; sourceTree = "<group>"; };
+		5837776A2D60D08400A03937 /* 3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 3.png; sourceTree = "<group>"; };
+		5837776B2D60D08400A03937 /* pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pause.png; sourceTree = "<group>"; };
+		5837776C2D60D08400A03937 /* 1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.png; sourceTree = "<group>"; };
+		5837776D2D60D08400A03937 /* time.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time.png; sourceTree = "<group>"; };
+		5837776E2D60D08400A03937 /* VolumeMute.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeMute.png; sourceTree = "<group>"; };
+		5837776F2D60D08400A03937 /* 2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 2.png; sourceTree = "<group>"; };
+		583777702D60D08400A03937 /* 0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 0.png; sourceTree = "<group>"; };
+		583777712D60D08400A03937 /* 6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 6.png; sourceTree = "<group>"; };
+		583777722D60D08400A03937 /* ideal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ideal.png; sourceTree = "<group>"; };
+		583777732D60D08400A03937 /* home.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home.png; sourceTree = "<group>"; };
+		583777742D60D08400A03937 /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
+		583777752D60D08400A03937 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
+		583777762D60D08400A03937 /* VolumeUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeUp.png; sourceTree = "<group>"; };
 		58604C312D5A052C0064B27C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		58604C322D5A052C0064B27C /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		58604C342D5A05740064B27C /* defs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = defs.cpp; sourceTree = "<group>"; };
@@ -86,11 +103,10 @@
 		58604C6A2D5A12360064B27C /* no_move.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = no_move.mp3; path = ../../assests/sounds/no_move.mp3; sourceTree = "<group>"; };
 		58604C6B2D5A12360064B27C /* linked.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = linked.mp3; path = ../../assests/sounds/linked.mp3; sourceTree = "<group>"; };
 		58604C6C2D5A12360064B27C /* oho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = oho.mp3; path = ../../assests/sounds/oho.mp3; sourceTree = "<group>"; };
-		58604C6D2D5A12360064B27C /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = ../../assests/sounds/click.mp3; sourceTree = "<group>"; };
+		58604C6D2D5A12360064B27C /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = assests/sounds/click.mp3; sourceTree = "<group>"; };
 		58604C6E2D5A12360064B27C /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = win.mp3; path = ../../assests/sounds/win.mp3; sourceTree = "<group>"; };
 		589396FC2D5E271E00B31884 /* libSDL2_image-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_image-2.0.0.dylib"; path = "../../../../opt/homebrew/Cellar/sdl2_image/2.8.4/lib/libSDL2_image-2.0.0.dylib"; sourceTree = "<group>"; };
 		589B86E42D5E4C3100181DBF /* pokemonBackground1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pokemonBackground1.jpeg; sourceTree = "<group>"; };
-		589B86E52D5E57CF00181DBF /* pokemonBackground2.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pokemonBackground2.jpeg; sourceTree = "<group>"; };
 		58F5502E2D578FF90032DC99 /* SDL2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDL2; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F550392D5792B60032DC99 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/homebrew/Cellar/sdl2/2.30.12/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		58F5503B2D579AAE0032DC99 /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../../opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -154,11 +170,27 @@
 		58604C402D5A06770064B27C /* image */ = {
 			isa = PBXGroup;
 			children = (
+				583777702D60D08400A03937 /* 0.png */,
+				5837776C2D60D08400A03937 /* 1.png */,
+				5837776F2D60D08400A03937 /* 2.png */,
+				5837776A2D60D08400A03937 /* 3.png */,
+				583777672D60D08400A03937 /* 4.png */,
+				583777752D60D08400A03937 /* 5.png */,
+				583777712D60D08400A03937 /* 6.png */,
+				583777662D60D08400A03937 /* bookGuide.png */,
+				583777742D60D08400A03937 /* continue.png */,
+				583777732D60D08400A03937 /* home.png */,
+				583777722D60D08400A03937 /* ideal.png */,
+				5837776B2D60D08400A03937 /* pause.png */,
+				583777682D60D08400A03937 /* swap.png */,
+				5837776D2D60D08400A03937 /* time.png */,
+				5837776E2D60D08400A03937 /* VolumeMute.png */,
+				583777762D60D08400A03937 /* VolumeUp.png */,
+				583777642D60B0DF00A03937 /* pokemonBackground2.jpeg */,
 				583777632D603C4700A03937 /* close.png */,
 				583777622D60398C00A03937 /* backgroundGuide.jpeg */,
 				583777602D601D6200A03937 /* guide.png */,
 				5837775F2D601A4800A03937 /* play.png */,
-				589B86E52D5E57CF00181DBF /* pokemonBackground2.jpeg */,
 				589B86E42D5E4C3100181DBF /* pokemonBackground1.jpeg */,
 				58604C452D5A0CB80064B27C /* pikachu_image1.png */,
 				58604C482D5A0CB90064B27C /* pikachu_image2.png */,
