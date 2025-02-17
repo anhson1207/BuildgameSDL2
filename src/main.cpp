@@ -10,7 +10,6 @@ bool isMouseOver(int mouseX,int mouseY,int x,int y,int w,int h){
     return (mouseX>=x&&mouseX<=x+w&&mouseY>=y&&mouseY<=y+h);
 }
 
-
 int main(int argc,char *argv[]){
     Graphics graphics;
     if(!graphics.init()){
@@ -26,7 +25,7 @@ int main(int argc,char *argv[]){
     SDL_Texture*playImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground2.jpeg");
     SDL_Cursor *handCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
     SDL_Cursor *arrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
-       
+    
     
     bool running=true;
     bool showGuide=false;
@@ -42,6 +41,16 @@ int main(int argc,char *argv[]){
             int mouseY=event.button.y;
             bool hovering=false;
             if(event.type==SDL_MOUSEBUTTONDOWN){
+//                     int boardX = (1200 - (COL * ICON_SIZE)) / 2;
+//                    int boardY = (950 - (ROW * ICON_SIZE)) / 2;
+//                           if (mouseX >= boardX && mouseX <= boardX + COL * ICON_SIZE &&
+//                             mouseY >= boardY && mouseY <= boardY + ROW * ICON_SIZE) {
+//                
+//                                int x = (mouseY - boardY) / ICON_SIZE;
+//                                int y = (mouseX - boardX) / ICON_SIZE;
+//                               buttonEvent.handleClick(x, y);
+//                            }
+                
                 
                 if(mouseX>=510 && mouseX<=730&&mouseY>=540&&mouseY<=650){
                     SDL_SetCursor(handCursor);
@@ -59,34 +68,35 @@ int main(int argc,char *argv[]){
                     showGuide=false;
                 }
             }
-            if(isMouseOver(mouseX, mouseY, 510, 540, 730, 710)||isMouseOver(mouseX, mouseY, 580, 660, 665, 735)||(showGuide&&isMouseOver(mouseX, mouseY, 870, 90, 930, 150))){
-                SDL_SetCursor(handCursor);
-                hovering = true;
+                if(isMouseOver(mouseX, mouseY, 510, 540, 730, 710)||isMouseOver(mouseX, mouseY, 580, 660, 665, 735)||(showGuide&&isMouseOver(mouseX, mouseY, 870, 90, 930, 150))){
+                    SDL_SetCursor(handCursor);
+                    hovering = true;
+                }
+                if(!hovering){
+                    SDL_SetCursor(arrowCursor);
+                }
             }
-            if(!hovering){
-                SDL_SetCursor(arrowCursor);
-            }
-        }
-       
-        
-        graphics.clear();
-        graphics.renderTexture(background, 0, 0, 1200, 950);
-        graphics.renderTexture(playButton, 510, 540, 220, 170);
-        graphics.renderTexture(guideButton, 580, 660, 75, 75);
-        if (showGuide) {
-            graphics.renderTexture(guideImage, 150, 100, 900, 750);
-            graphics.renderTexture(closeButton, 1020,70, 60, 60);
             
+            
+            graphics.clear();
+            graphics.renderTexture(background, 0, 0, 1200, 950);
+            graphics.renderTexture(playButton, 510, 540, 220, 170);
+            graphics.renderTexture(guideButton, 580, 660, 75, 75);
+            if (showGuide) {
+                graphics.renderTexture(guideImage, 150, 100, 900, 750);
+                graphics.renderTexture(closeButton, 1020,70, 60, 60);
+                
+            }
+            if(isPlaying){
+                graphics.renderTexture(playImage, 0, 0, 1200, 950);
+            }
+            buttonEvent.renderBoard();
+            graphics.present();
         }
-        if(isPlaying){
-            graphics.renderTexture(playImage, 0, 0, 1200, 950);
-        }
-        buttonEvent.renderBoard();
-        graphics.present();
+        SDL_DestroyTexture(background);
+        SDL_DestroyTexture(playButton);
+        SDL_DestroyTexture(guideButton);
+        SDL_DestroyTexture(closeButton);
+        return 0;
     }
-    SDL_DestroyTexture(background);
-    SDL_DestroyTexture(playButton);
-    SDL_DestroyTexture(guideButton);
-    SDL_DestroyTexture(closeButton);
-    return 0;
-}
+
