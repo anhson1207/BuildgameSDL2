@@ -1,10 +1,11 @@
-
 #include "main.hpp"
 #include "graphics.hpp"
 #include "board.hpp"
+#include "GameScene.hpp"
 #include <SDL.h>
 #include <SDL2/SDL.h>
 #include <iostream>
+#include "TimeBar.hpp"
 using namespace std;
 bool isMouseOver(int mouseX,int mouseY,int x,int y,int w,int h){
     return (mouseX>=x&&mouseX<=x+w&&mouseY>=y&&mouseY<=y+h);
@@ -16,6 +17,9 @@ int main(int argc,char *argv[]){
         return -1;
     }
     SDL_Renderer* renderer = graphics.getRenderer();
+    SDL_Color timeBarColor={255,255,255,255};
+    TimeBar timeBar(100,50,600,30,30.0f,timeBarColor);
+    
     ButtonEvent buttonEvent(renderer,ROW,COL);
     SDL_Texture *background=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground1.jpeg");
     SDL_Texture *playButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/play.png");
@@ -31,27 +35,27 @@ int main(int argc,char *argv[]){
     bool showGuide=false;
     bool isPlaying=false;
     SDL_Event event;
+    Uint32 lastTime=SDL_GetTicks();
     while(running){
         while (SDL_PollEvent(&event)) {
             if(event.type==SDL_QUIT){
                 running=false;
             }
+            Uint32 currentTime=SDL_GetTicks();
+            float deltaTime=(currentTime-lastTime)/1000.0f;
+            lastTime=currentTime;
+            timeBar.update(deltaTime);
+            //SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+            SDL_RenderClear(renderer);
+            timeBar.render(renderer);
+            SDL_RenderPresent(renderer);
+            if(timeBar.isTimeUp()) break;
+
             buttonEvent.handleEvent(event);
             int mouseX=event.button.x;
             int mouseY=event.button.y;
             bool hovering=false;
             if(event.type==SDL_MOUSEBUTTONDOWN){
-//                     int boardX = (1200 - (COL * ICON_SIZE)) / 2;
-//                    int boardY = (950 - (ROW * ICON_SIZE)) / 2;
-//                           if (mouseX >= boardX && mouseX <= boardX + COL * ICON_SIZE &&
-//                             mouseY >= boardY && mouseY <= boardY + ROW * ICON_SIZE) {
-//                
-//                                int x = (mouseY - boardY) / ICON_SIZE;
-//                                int y = (mouseX - boardX) / ICON_SIZE;
-//                               buttonEvent.handleClick(x, y);
-//                            }
-                
-                
                 if(mouseX>=510 && mouseX<=730&&mouseY>=540&&mouseY<=650){
                     SDL_SetCursor(handCursor);
                     cout<<"Start game"<<endl;

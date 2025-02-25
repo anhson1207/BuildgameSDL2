@@ -14,6 +14,7 @@
 		58604C3F2D5A063D0064B27C /* pikachu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C3D2D5A063D0064B27C /* pikachu.cpp */; };
 		58604C692D5A10ED0064B27C /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C672D5A10ED0064B27C /* SoundManager.cpp */; };
 		589396FD2D5E271E00B31884 /* libSDL2_image-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 589396FC2D5E271E00B31884 /* libSDL2_image-2.0.0.dylib */; };
+		58D388B72D6D646200241172 /* TimeBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58D388B52D6D646200241172 /* TimeBar.cpp */; };
 		58F5503A2D5792B60032DC99 /* libSDL2-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F550392D5792B60032DC99 /* libSDL2-2.0.0.dylib */; };
 		58F5503C2D579AAE0032DC99 /* libSDL2_ttf-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 58F5503B2D579AAE0032DC99 /* libSDL2_ttf-2.0.0.dylib */; };
 /* End PBXBuildFile section */
@@ -52,6 +53,7 @@
 		583777742D60D08400A03937 /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
 		583777752D60D08400A03937 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		583777762D60D08400A03937 /* VolumeUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeUp.png; sourceTree = "<group>"; };
+		583C43022D677FD300AAC9C9 /* timeBar.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timeBar.jpeg; sourceTree = "<group>"; };
 		58604C312D5A052C0064B27C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		58604C322D5A052C0064B27C /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		58604C342D5A05740064B27C /* defs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = defs.cpp; sourceTree = "<group>"; };
@@ -107,6 +109,8 @@
 		58604C6E2D5A12360064B27C /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = win.mp3; path = ../../assests/sounds/win.mp3; sourceTree = "<group>"; };
 		589396FC2D5E271E00B31884 /* libSDL2_image-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_image-2.0.0.dylib"; path = "../../../../opt/homebrew/Cellar/sdl2_image/2.8.4/lib/libSDL2_image-2.0.0.dylib"; sourceTree = "<group>"; };
 		589B86E42D5E4C3100181DBF /* pokemonBackground1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pokemonBackground1.jpeg; sourceTree = "<group>"; };
+		58D388B52D6D646200241172 /* TimeBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeBar.cpp; sourceTree = "<group>"; };
+		58D388B62D6D646200241172 /* TimeBar.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeBar.hpp; sourceTree = "<group>"; };
 		58F5502E2D578FF90032DC99 /* SDL2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDL2; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F550392D5792B60032DC99 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/homebrew/Cellar/sdl2/2.30.12/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		58F5503B2D579AAE0032DC99 /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../../opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -147,6 +151,8 @@
 				58604C3E2D5A063D0064B27C /* pikachu.hpp */,
 				58604C672D5A10ED0064B27C /* SoundManager.cpp */,
 				58604C682D5A10ED0064B27C /* SoundManager.hpp */,
+				58D388B52D6D646200241172 /* TimeBar.cpp */,
+				58D388B62D6D646200241172 /* TimeBar.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -170,6 +176,7 @@
 		58604C402D5A06770064B27C /* image */ = {
 			isa = PBXGroup;
 			children = (
+				583C43022D677FD300AAC9C9 /* timeBar.jpeg */,
 				583777702D60D08400A03937 /* 0.png */,
 				5837776C2D60D08400A03937 /* 1.png */,
 				5837776F2D60D08400A03937 /* 2.png */,
@@ -378,6 +385,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58D388B72D6D646200241172 /* TimeBar.cpp in Sources */,
 				58604C332D5A052C0064B27C /* main.cpp in Sources */,
 				58604C3C2D5A061F0064B27C /* board.cpp in Sources */,
 				58604C392D5A058F0064B27C /* graphics.cpp in Sources */,
