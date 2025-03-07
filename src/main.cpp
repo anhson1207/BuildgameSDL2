@@ -6,16 +6,29 @@
 #include <SDL2/SDL.h>
 #include <iostream>
 #include "TimeBar.hpp"
+#include "Score.hpp"
 using namespace std;
 bool isMouseOver(int mouseX,int mouseY,int x,int y,int w,int h){
     return (mouseX>=x&&mouseX<=x+w&&mouseY>=y&&mouseY<=y+h);
 }
 
+bool initSDL() {
+    if (TTF_Init() == -1) {
+        std::cerr << "Failed to initialize SDL_ttf: " << TTF_GetError() << std::endl;
+        return false;
+    }
+    return true;
+}
+void closeSDL() {
+    TTF_Quit();
+    SDL_Quit();
+}
 int main(int argc,char *argv[]){
     Graphics graphics;
     if(!graphics.init()){
         return -1;
     }
+    Score _score;
     SDL_Renderer* renderer = graphics.getRenderer();
     SDL_Color colorTimeBar={120,255,255,255};
     TimeBar timeBar(300,100,600,30,300000,colorTimeBar);
@@ -27,6 +40,7 @@ int main(int argc,char *argv[]){
     SDL_Texture*closeButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/close.png");
     SDL_Texture*playImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground2.jpeg");
     SDL_Texture*timeIcon=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/time.png");
+    SDL_Texture*score=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/score.png");
     SDL_Cursor *handCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
     SDL_Cursor *arrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
     bool running=true;
@@ -69,7 +83,7 @@ int main(int argc,char *argv[]){
                 }
             }
             
-            
+           
             graphics.clear();
             graphics.renderTexture(background, 0, 0, 1200, 950);
             graphics.renderTexture(playButton, 510, 540, 220, 170);
@@ -77,17 +91,18 @@ int main(int argc,char *argv[]){
             if (showGuide) {
                 graphics.renderTexture(guideImage, 150, 100, 900, 750);
                 graphics.renderTexture(closeButton, 1020,70, 60, 60);
-                
             }
             if(isPlaying){
                 graphics.renderTexture(playImage, 0, 0, 1200, 950);
+                graphics.renderTexture(timeIcon, 240, 95, 40, 40);
+                graphics.renderTexture(score, 0, -55, 200, 200);
             }
-        graphics.renderTexture(timeIcon, 250, 100, 30, 30);
-            buttonEvent.renderBoard();
-        timeBar.render(renderer);
-            graphics.present();
-
         
+            buttonEvent.renderBoard();
+        
+        timeBar.render(renderer);
+        _score.render(renderer, 50, 50);
+        graphics.present();
         }
         SDL_DestroyTexture(background);
         SDL_DestroyTexture(playButton);

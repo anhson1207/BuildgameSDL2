@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5858C72A2D7B2451008F81B3 /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5858C7282D7B2451008F81B3 /* Score.cpp */; };
 		58604C332D5A052C0064B27C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C312D5A052C0064B27C /* main.cpp */; };
 		58604C362D5A05740064B27C /* defs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C342D5A05740064B27C /* defs.cpp */; };
 		58604C392D5A058F0064B27C /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C372D5A058F0064B27C /* graphics.cpp */; };
@@ -53,6 +54,10 @@
 		583777742D60D08400A03937 /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
 		583777752D60D08400A03937 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		583777762D60D08400A03937 /* VolumeUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeUp.png; sourceTree = "<group>"; };
+		5858C7272D7B1896008F81B3 /* score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = score.png; sourceTree = "<group>"; };
+		5858C7282D7B2451008F81B3 /* Score.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
+		5858C7292D7B2451008F81B3 /* Score.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Score.hpp; sourceTree = "<group>"; };
+		5858C72B2D7B2D39008F81B3 /* BigShoulders-VariableFont_opsz,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BigShoulders-VariableFont_opsz,wght.ttf"; sourceTree = SOURCE_ROOT; };
 		58604C312D5A052C0064B27C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		58604C322D5A052C0064B27C /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		58604C342D5A05740064B27C /* defs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = defs.cpp; sourceTree = "<group>"; };
@@ -152,6 +157,8 @@
 				58604C682D5A10ED0064B27C /* SoundManager.hpp */,
 				58D388B52D6D646200241172 /* TimeBar.cpp */,
 				58D388B62D6D646200241172 /* TimeBar.hpp */,
+				5858C7282D7B2451008F81B3 /* Score.cpp */,
+				5858C7292D7B2451008F81B3 /* Score.hpp */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -166,6 +173,7 @@
 		58604C302D59CEC70064B27C /* assests */ = {
 			isa = PBXGroup;
 			children = (
+				5858C72B2D7B2D39008F81B3 /* BigShoulders-VariableFont_opsz,wght.ttf */,
 				58604C662D5A0F9D0064B27C /* sounds */,
 				58604C402D5A06770064B27C /* image */,
 			);
@@ -175,6 +183,7 @@
 		58604C402D5A06770064B27C /* image */ = {
 			isa = PBXGroup;
 			children = (
+				5858C7272D7B1896008F81B3 /* score.png */,
 				583777702D60D08400A03937 /* 0.png */,
 				5837776C2D60D08400A03937 /* 1.png */,
 				5837776F2D60D08400A03937 /* 2.png */,
@@ -389,6 +398,7 @@
 				58604C392D5A058F0064B27C /* graphics.cpp in Sources */,
 				58604C692D5A10ED0064B27C /* SoundManager.cpp in Sources */,
 				58604C362D5A05740064B27C /* defs.cpp in Sources */,
+				5858C72A2D7B2451008F81B3 /* Score.cpp in Sources */,
 				58604C3F2D5A063D0064B27C /* pikachu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

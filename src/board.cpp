@@ -1,12 +1,13 @@
 #include <iostream>
 #include "board.hpp"
+#include "Score.hpp"
 #include <random>
 #include <cstring>
 #include <queue>
 #include <vector>
 const int dx[4] = {-1, 1, 0, 0};
 const int dy[4] = {0, 0, -1, 1};
-
+Score score;
 using namespace std;
 struct Node {
     int x, y, dir, turns;
@@ -166,6 +167,7 @@ void ButtonEvent::handleClick(int x, int y) {
             if (controller.canConnect(selectedX, selectedY, x, y)&&controller.selectPokemon(selectedX, selectedY, x, y)) {
                 cout << "Matched: (" << selectedX << ", " << selectedY << ") -> (" << x << ", " << y << ")" << endl;
                 controller.removePair(selectedX, selectedY, x, y);
+                score.addScore(10);
                 renderBoard();
             }
         }
