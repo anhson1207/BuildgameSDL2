@@ -6,6 +6,7 @@
 #include <vector>
 #include <cstdlib>
 #include <ctime>
+#include "Score.hpp"
 using namespace std;
 
  const int ROW=10,COL=12;
@@ -51,6 +52,7 @@ public:
 
 class ButtonEvent{
 private:
+    Score *score;
     SDL_Renderer *renderer;
     SDL_Texture *icon[36];
     Controller controller;
@@ -58,7 +60,7 @@ private:
     SDL_Texture *playButton;
     SDL_Rect playButtonRect;
 public:
-    ButtonEvent(SDL_Renderer *ren,int row,int col);
+    ButtonEvent(SDL_Renderer *ren,int row,int col,Score* _score);
     void handleClick(int x, int y);
     void handleEvent(SDL_Event &event){
         if(event.type==SDL_MOUSEBUTTONDOWN){

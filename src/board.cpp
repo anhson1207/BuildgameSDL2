@@ -7,7 +7,6 @@
 #include <vector>
 const int dx[4] = {-1, 1, 0, 0};
 const int dy[4] = {0, 0, -1, 1};
-Score score;
 using namespace std;
 struct Node {
     int x, y, dir, turns;
@@ -59,7 +58,8 @@ void Controller::createMatrix() {
     } while (i < row * col / 2);
 }
 
-ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col) : renderer(ren), controller(row, col) {
+ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col,Score *_score) : renderer(ren), controller(row, col) {
+    score=_score;
     showBoard = false;
     playButton = loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/0.png1");
     playButtonRect = {510, 540, 220, 110};
@@ -167,7 +167,11 @@ void ButtonEvent::handleClick(int x, int y) {
             if (controller.canConnect(selectedX, selectedY, x, y)&&controller.selectPokemon(selectedX, selectedY, x, y)) {
                 cout << "Matched: (" << selectedX << ", " << selectedY << ") -> (" << x << ", " << y << ")" << endl;
                 controller.removePair(selectedX, selectedY, x, y);
-                score.addScore(10);
+                
+                if(score){
+                    score->addScore(10);
+                    score->setScore();
+                }
                 renderBoard();
             }
         }

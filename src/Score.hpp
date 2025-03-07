@@ -6,19 +6,25 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
-
-class Score{
+//extern int globalScore;
+class Score {
 private:
     int score;
-    TTF_Font *font;
+    TTF_Font* font;
     SDL_Color color;
+    SDL_Texture* texture;
+    SDL_Renderer* renderer;
+
+    void updateTexture();
+
 public:
-    Score();
+    Score(SDL_Renderer* renderer);
     ~Score();
     void addScore(int points);
-    void render(SDL_Renderer *renderer,int x,int y);
-    int getScore() const;
+    void render(int x, int y);
+    void setScore();
 };
 
 
 #endif /* Score_hpp */
+
