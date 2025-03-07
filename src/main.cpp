@@ -17,9 +17,8 @@ int main(int argc,char *argv[]){
         return -1;
     }
     SDL_Renderer* renderer = graphics.getRenderer();
-    SDL_Color timeBarColor={255,255,255,255};
-    TimeBar timeBar(100,50,600,30,30.0f,timeBarColor);
-    
+    SDL_Color colorTimeBar={120,255,255,255};
+    TimeBar timeBar(300,100,600,30,300000,colorTimeBar);
     ButtonEvent buttonEvent(renderer,ROW,COL);
     SDL_Texture *background=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground1.jpeg");
     SDL_Texture *playButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/play.png");
@@ -27,30 +26,18 @@ int main(int argc,char *argv[]){
     SDL_Texture*guideImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/backgroundGuide.jpeg");
     SDL_Texture*closeButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/close.png");
     SDL_Texture*playImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground2.jpeg");
+    SDL_Texture*timeIcon=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/time.png");
     SDL_Cursor *handCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
     SDL_Cursor *arrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
-    
-    
     bool running=true;
     bool showGuide=false;
     bool isPlaying=false;
     SDL_Event event;
-    Uint32 lastTime=SDL_GetTicks();
     while(running){
         while (SDL_PollEvent(&event)) {
             if(event.type==SDL_QUIT){
                 running=false;
             }
-            Uint32 currentTime=SDL_GetTicks();
-            float deltaTime=(currentTime-lastTime)/1000.0f;
-            lastTime=currentTime;
-            timeBar.update(deltaTime);
-            //SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
-            SDL_RenderClear(renderer);
-            timeBar.render(renderer);
-            SDL_RenderPresent(renderer);
-            if(timeBar.isTimeUp()) break;
-
             buttonEvent.handleEvent(event);
             int mouseX=event.button.x;
             int mouseY=event.button.y;
@@ -60,6 +47,7 @@ int main(int argc,char *argv[]){
                     SDL_SetCursor(handCursor);
                     cout<<"Start game"<<endl;
                     isPlaying=true;
+                    timeBar.start();
                 }
                 if(mouseX>=580&&mouseX<=665&&mouseY>=660&&mouseY<=735){
                     SDL_SetCursor(handCursor);
@@ -94,8 +82,12 @@ int main(int argc,char *argv[]){
             if(isPlaying){
                 graphics.renderTexture(playImage, 0, 0, 1200, 950);
             }
+        graphics.renderTexture(timeIcon, 250, 100, 30, 30);
             buttonEvent.renderBoard();
+        timeBar.render(renderer);
             graphics.present();
+
+        
         }
         SDL_DestroyTexture(background);
         SDL_DestroyTexture(playButton);

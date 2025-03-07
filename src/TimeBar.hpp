@@ -6,18 +6,18 @@
 #include <SDL.h>
 class TimeBar{
 private:
-    SDL_Rect barRect;
-    SDL_Color barColor;
-    int maxWidth;
-    int height;
-    float duration;
-    float elapsedTime;
+    int x,y;
+    int width,height;
+    int totalTime;
+    Uint32 startTime;
+    SDL_Color color;
+    bool isRunningTimeBar;
 public:
-    TimeBar(int x,int y,int width,int height,float duration,SDL_Color color);
-    void update(float deltaTime);
-    void render(SDL_Renderer * renderer);
-    bool isTimeUp() const;
-    void reset();
+    TimeBar(int x,int y,int width,int height,int totalTime,SDL_Color color);
+    void start();
+    void update();
+    void render(SDL_Renderer *renderer);
+    bool isTimeUp();
 };
 
 #endif /* TimeBar_hpp */

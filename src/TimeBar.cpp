@@ -1,25 +1,29 @@
 #include "TimeBar.hpp"
-TimeBar::TimeBar(int x,int y,int width,int height,float duration,SDL_Color color){
-    barRect={x,y,width,height};
-    barColor=color;
-    maxWidth=width;
+using namespace std;
+TimeBar::TimeBar(int x,int y,int width,int height,int totalTime,SDL_Color color){
+    this->x=x;
+    this->y=y;
+    this->width=width;
     this->height=height;
-    this->duration=duration;
-    elapsedTime=0.0f;
+    this->totalTime=totalTime;
+    this->color=color;
+    this->startTime=SDL_GetTicks();
+    this->isRunningTimeBar=false;
 }
-void TimeBar::update(float deltaTime){
-    elapsedTime+=deltaTime;
-    if(elapsedTime>duration) elapsedTime=duration;
-    barRect.w=static_cast<int>(maxWidth*(1-elapsedTime/duration));
+void TimeBar::start(){
+    isRunningTimeBar = true;
+    startTime=SDL_GetTicks();
 }
-void TimeBar::render(SDL_Renderer * renderer){
-    SDL_SetRenderDrawColor(renderer, barColor.r, barColor.g, barColor.b, barColor.a);
-    SDL_RenderFillRect(renderer, &barRect);
+void TimeBar::render(SDL_Renderer *renderer){
+    if (!isRunningTimeBar) return;
+    Uint32 elapsed=SDL_GetTicks()-startTime;
+    float percent=1.0f-(float)elapsed/totalTime;
+    if(percent<0) percent=0;
+    int currentWidth=(int)(width*percent);
+    SDL_Rect timeBar={x,y,currentWidth,height};
+    SDL_SetRenderDrawColor(renderer, color.r, color.g, color.b, 255);
+    SDL_RenderFillRect(renderer, &timeBar);
 }
-bool TimeBar::isTimeUp() const{
-    return elapsedTime>=duration;
-}
-void TimeBar::reset(){
-    elapsedTime=0.0f;
-    barRect.w=maxWidth;
+bool TimeBar::isTimeUp(){
+    return (SDL_GetTicks()-startTime)>=totalTime;
 }

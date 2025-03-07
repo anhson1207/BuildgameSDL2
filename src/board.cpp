@@ -31,7 +31,7 @@ void Controller::showMatrix() {
 
 void Controller::createMatrix() {
     matrix.resize(row, vector<int>(col, 0));
-    srand(time(0));
+    srand((unsigned int) time(0));
     int imgCount = 36;
     int max = 4;
     vector<int> arr(imgCount + 1, 0);
@@ -47,7 +47,7 @@ void Controller::createMatrix() {
         if (arr[index] < max) {
             arr[index] += 2;
             for (int j = 0; j < 2; j++) {
-                int size = listPoint.size();
+               int size =(unsigned int) listPoint.size();
                 if (size == 0) break;
                 int pointIndex = rand() % size;
                 matrix[listPoint[pointIndex].x][listPoint[pointIndex].y] = index;

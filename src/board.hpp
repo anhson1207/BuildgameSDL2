@@ -8,7 +8,7 @@
 #include <ctime>
 using namespace std;
 
- const int ROW=9,COL=12;
+ const int ROW=10,COL=12;
  const int ICON_SIZE=65;
 
 struct Point{

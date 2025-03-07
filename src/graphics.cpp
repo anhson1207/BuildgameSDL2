@@ -19,7 +19,7 @@ bool Graphics::init(){
         cout<<"Can't open the window,error"<<SDL_GetError()<<endl;
         return false;
     }
-    renderer=SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    renderer=SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
     if(!renderer){
         cout<<"Can't make renderer,error"<<SDL_GetError()<<endl;
         return false;
