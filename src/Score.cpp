@@ -1,12 +1,11 @@
 #include "Score.hpp"
 #include <iostream>
-//int globalScore = 0;
 Score::Score(SDL_Renderer* renderer): score(0), renderer(renderer), texture(nullptr) {
     if (TTF_Init() == -1) {
         std::cerr << "TTF_Init failed: " << TTF_GetError() << std::endl;
     }
 
-    font = TTF_OpenFont("/Users/nguyenanhson/Documents/BuildgameSDL2/BigShoulders-VariableFont_opsz,wght.ttf", 28);
+    font = TTF_OpenFont("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/Roboto-VariableFont_wdth,wght.ttf", 28);
     if (!font) {
         std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;
     }

@@ -58,7 +58,8 @@ void Controller::createMatrix() {
     } while (i < row * col / 2);
 }
 
-ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col,Score *_score) : renderer(ren), controller(row, col) {
+ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col,Score *_score,Controller *_board) : renderer(ren), controller(row, col) {
+    board=_board;
     score=_score;
     showBoard = false;
     playButton = loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/0.png1");
@@ -179,3 +180,26 @@ void ButtonEvent::handleClick(int x, int y) {
         selectedY = -1;
     }
 }
+bool ButtonEvent::isMouseOver(int mouseX, int mouseY, int x, int y, int w, int h) {
+    return (mouseX >= x && mouseX <= x + w && mouseY >= y && mouseY <= y + h);
+}
+
+bool ButtonEvent::isPokemonClicked(int mouseX, int mouseY){
+    int boardX = (1200 - (COL * ICON_SIZE)) / 2;
+    int boardY = (950 - (ROW * ICON_SIZE)) / 2;
+    for(int i=0;i<ROW;i++){
+        for(int j=0;j<COL;j++){
+            if(board->matrix[i][j]!=0){
+                int x=boardX+j*ICON_SIZE;
+                int y=boardY+i*ICON_SIZE;
+                int w=ICON_SIZE;
+                int h=ICON_SIZE;
+                if(isMouseOver(mouseX, mouseY, x, y, w, h)){
+                    return  true;
+                }
+            }
+        }
+    }
+    return false;
+}
+

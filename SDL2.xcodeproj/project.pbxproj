@@ -54,10 +54,9 @@
 		583777742D60D08400A03937 /* continue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = continue.png; sourceTree = "<group>"; };
 		583777752D60D08400A03937 /* 5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 5.png; sourceTree = "<group>"; };
 		583777762D60D08400A03937 /* VolumeUp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = VolumeUp.png; sourceTree = "<group>"; };
-		5858C7272D7B1896008F81B3 /* score.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = score.png; sourceTree = "<group>"; };
+		58506A8B2D7C5A22000C242B /* Roboto-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
 		5858C7282D7B2451008F81B3 /* Score.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Score.cpp; sourceTree = "<group>"; };
 		5858C7292D7B2451008F81B3 /* Score.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Score.hpp; sourceTree = "<group>"; };
-		5858C72B2D7B2D39008F81B3 /* BigShoulders-VariableFont_opsz,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BigShoulders-VariableFont_opsz,wght.ttf"; sourceTree = SOURCE_ROOT; };
 		58604C312D5A052C0064B27C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		58604C322D5A052C0064B27C /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		58604C342D5A05740064B27C /* defs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = defs.cpp; sourceTree = "<group>"; };
@@ -106,11 +105,11 @@
 		58604C652D5A0CB90064B27C /* pikachu_image16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikachu_image16.png; path = assests/image/pikachu_image16.png; sourceTree = SOURCE_ROOT; };
 		58604C672D5A10ED0064B27C /* SoundManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SoundManager.cpp; sourceTree = "<group>"; };
 		58604C682D5A10ED0064B27C /* SoundManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SoundManager.hpp; sourceTree = "<group>"; };
-		58604C6A2D5A12360064B27C /* no_move.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = no_move.mp3; path = ../../assests/sounds/no_move.mp3; sourceTree = "<group>"; };
-		58604C6B2D5A12360064B27C /* linked.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = linked.mp3; path = ../../assests/sounds/linked.mp3; sourceTree = "<group>"; };
-		58604C6C2D5A12360064B27C /* oho.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = oho.mp3; path = ../../assests/sounds/oho.mp3; sourceTree = "<group>"; };
-		58604C6D2D5A12360064B27C /* click.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = click.mp3; path = assests/sounds/click.mp3; sourceTree = "<group>"; };
-		58604C6E2D5A12360064B27C /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = win.mp3; path = ../../assests/sounds/win.mp3; sourceTree = "<group>"; };
+		58604C6A2D5A12360064B27C /* no_move.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = no_move.wav; path = assests/sounds/no_move.wav; sourceTree = "<group>"; };
+		58604C6B2D5A12360064B27C /* linked.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = linked.wav; path = assests/sounds/linked.wav; sourceTree = "<group>"; };
+		58604C6C2D5A12360064B27C /* oho.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = oho.wav; path = assests/sounds/oho.wav; sourceTree = "<group>"; };
+		58604C6D2D5A12360064B27C /* click.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = click.wav; path = assests/sounds/click.wav; sourceTree = "<group>"; };
+		58604C6E2D5A12360064B27C /* win.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = win.wav; path = assests/sounds/win.wav; sourceTree = "<group>"; };
 		589396FC2D5E271E00B31884 /* libSDL2_image-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_image-2.0.0.dylib"; path = "../../../../opt/homebrew/Cellar/sdl2_image/2.8.4/lib/libSDL2_image-2.0.0.dylib"; sourceTree = "<group>"; };
 		589B86E42D5E4C3100181DBF /* pokemonBackground1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pokemonBackground1.jpeg; sourceTree = "<group>"; };
 		58D388B52D6D646200241172 /* TimeBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeBar.cpp; sourceTree = "<group>"; };
@@ -173,7 +172,7 @@
 		58604C302D59CEC70064B27C /* assests */ = {
 			isa = PBXGroup;
 			children = (
-				5858C72B2D7B2D39008F81B3 /* BigShoulders-VariableFont_opsz,wght.ttf */,
+				58506A8B2D7C5A22000C242B /* Roboto-VariableFont_wdth,wght.ttf */,
 				58604C662D5A0F9D0064B27C /* sounds */,
 				58604C402D5A06770064B27C /* image */,
 			);
@@ -183,7 +182,6 @@
 		58604C402D5A06770064B27C /* image */ = {
 			isa = PBXGroup;
 			children = (
-				5858C7272D7B1896008F81B3 /* score.png */,
 				583777702D60D08400A03937 /* 0.png */,
 				5837776C2D60D08400A03937 /* 1.png */,
 				5837776F2D60D08400A03937 /* 2.png */,
@@ -249,11 +247,11 @@
 		58604C662D5A0F9D0064B27C /* sounds */ = {
 			isa = PBXGroup;
 			children = (
-				58604C6D2D5A12360064B27C /* click.mp3 */,
-				58604C6B2D5A12360064B27C /* linked.mp3 */,
-				58604C6A2D5A12360064B27C /* no_move.mp3 */,
-				58604C6C2D5A12360064B27C /* oho.mp3 */,
-				58604C6E2D5A12360064B27C /* win.mp3 */,
+				58604C6D2D5A12360064B27C /* click.wav */,
+				58604C6B2D5A12360064B27C /* linked.wav */,
+				58604C6A2D5A12360064B27C /* no_move.wav */,
+				58604C6C2D5A12360064B27C /* oho.wav */,
+				58604C6E2D5A12360064B27C /* win.wav */,
 			);
 			name = sounds;
 			path = assets/sounds;
@@ -530,6 +528,8 @@
 					/opt/homebrew/Cellar/sdl2_ttf/2.24.0/include,
 					/opt/homebrew/lib,
 					/opt/homebrew/Cellar/sdl2_image/2.8.4/include,
+					/opt/homebrew/include,
+					/opt/homebrew/Cellar/sdl2_mixer/2.8.1_1/include/,
 				);
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -537,12 +537,15 @@
 					/opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib,
 					/opt/homebrew/lib,
 					/opt/homebrew/Cellar/sdl2_image/2.8.4/lib,
+					/opt/homebrew/lib,
+					/opt/homebrew/Cellar/sdl2_mixer/2.8.1_1/lib,
 				);
 				"OTHER_CFLAGS[arch=*]" = "-I/opt/homebrew/include/SDL2";
 				"OTHER_CPLUSPLUSFLAGS[arch=*]" = "-I/opt/homebrew/include/SDL2";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lSDL2",
 					"-lSDL2_ttf",
+					"-lSDL2_mixer",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -557,6 +560,8 @@
 					/opt/homebrew/Cellar/sdl2_ttf/2.24.0/include,
 					/opt/homebrew/lib,
 					/opt/homebrew/Cellar/sdl2_image/2.8.4/include,
+					/opt/homebrew/include,
+					/opt/homebrew/Cellar/sdl2_mixer/2.8.1_1/include/,
 				);
 				"LD_RUNPATH_SEARCH_PATHS[arch=*]" = "@executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = (
@@ -564,12 +569,15 @@
 					/opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib,
 					/opt/homebrew/lib,
 					/opt/homebrew/Cellar/sdl2_image/2.8.4/lib,
+					/opt/homebrew/lib,
+					/opt/homebrew/Cellar/sdl2_mixer/2.8.1_1/lib,
 				);
 				"OTHER_CFLAGS[arch=*]" = "-I/opt/homebrew/include/SDL2";
 				"OTHER_CPLUSPLUSFLAGS[arch=*]" = "-I/opt/homebrew/include/SDL2";
 				"OTHER_LDFLAGS[arch=*]" = (
 					"-lSDL2",
 					"-lSDL2_ttf",
+					"-lSDL2_mixer",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

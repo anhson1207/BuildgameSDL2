@@ -10,7 +10,7 @@ Graphics::~Graphics(){
     SDL_Quit();
 }
 bool Graphics::init(){
-    if(SDL_Init(SDL_INIT_VIDEO)<0){
+    if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_AUDIO)<0){
         cout<<"SDL error"<<SDL_GetError()<<endl;
         return false;
     }

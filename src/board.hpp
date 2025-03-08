@@ -19,8 +19,9 @@ struct Point{
 class Controller{
 private:
     int row,col;
-    vector<vector<int>>matrix;
+    
 public:
+    vector<vector<int>>matrix;
     Controller(int _row,int _col);
     void showMatrix();
     void createMatrix();
@@ -59,8 +60,9 @@ private:
     bool showBoard=false;
     SDL_Texture *playButton;
     SDL_Rect playButtonRect;
+    Controller* board;
 public:
-    ButtonEvent(SDL_Renderer *ren,int row,int col,Score* _score);
+    ButtonEvent(SDL_Renderer *ren,int row,int col,Score* _score,Controller* _board);
     void handleClick(int x, int y);
     void handleEvent(SDL_Event &event){
         if(event.type==SDL_MOUSEBUTTONDOWN){
@@ -89,6 +91,8 @@ public:
     void loadIcon();
     SDL_Texture *loadTexture(const string &path);
     void renderBoard();
+    bool isMouseOver(int mouseX, int mouseY, int x, int y, int w, int h);
+    bool isPokemonClicked(int mouseX,int mouseY);
 };
 
 #endif /* board_hpp */

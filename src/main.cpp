@@ -8,6 +8,7 @@
 #include "TimeBar.hpp"
 #include "Score.hpp"
 #include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 using namespace std;
 bool isMouseOver(int mouseX,int mouseY,int x,int y,int w,int h){
     return (mouseX>=x&&mouseX<=x+w&&mouseY>=y&&mouseY<=y+h);
@@ -18,13 +19,28 @@ int main(int argc,char *argv[]){
     if(!graphics.init()){
         return -1;
     }
+    //Sounds Effect
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
+        return -1;
+    }
+    
+    Mix_Chunk* clickSound = Mix_LoadWAV("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/sounds/click.wav");
+    if (clickSound == nullptr) {
+        cout << "Failed to load click sound! SDL_mixer Error: " << Mix_GetError() << endl;
+        return -1;
+    }
+
+
+
 
     
     SDL_Renderer* renderer = graphics.getRenderer();
     SDL_Color colorTimeBar={120,255,255,255};
     TimeBar timeBar(300,100,600,30,300000,colorTimeBar);
     Score _score(renderer);
-    ButtonEvent buttonEvent(renderer,ROW,COL,&_score);
+    Controller _board(10,12);
+    ButtonEvent buttonEvent(renderer,ROW,COL,&_score,&_board);
     SDL_Texture *background=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground1.jpeg");
     SDL_Texture *playButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/play.png");
     SDL_Texture *guideButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/guide.png");
@@ -32,6 +48,8 @@ int main(int argc,char *argv[]){
     SDL_Texture*closeButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/close.png");
     SDL_Texture*playImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground2.jpeg");
     SDL_Texture*timeIcon=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/time.png");
+    SDL_Texture*volumeOn=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeUp.png");
+    SDL_Texture*volumeOff=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeMute.png");
     SDL_Cursor *handCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
     SDL_Cursor *arrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
     
@@ -39,6 +57,7 @@ int main(int argc,char *argv[]){
     bool running=true;
     bool showGuide=false;
     bool isPlaying=false;
+    bool volume=false;
     SDL_Event event;
     while(running){
         while (SDL_PollEvent(&event)) {
@@ -46,11 +65,26 @@ int main(int argc,char *argv[]){
                 running=false;
             }
            
+            if (showGuide) {
+                    if (event.type == SDL_MOUSEBUTTONDOWN) {
+                        int mouseX = event.button.x;
+                        int mouseY = event.button.y;
+
+                        if (mouseX >= 1020 && mouseX <= 1080 && mouseY >= 70 && mouseY <= 130) {
+                            showGuide = false;
+                            SDL_SetCursor(handCursor);
+                            cout << "Close guide" << endl;
+                        }
+                    }
+                    continue;
+                }
+
             buttonEvent.handleEvent(event);
             int mouseX=event.button.x;
             int mouseY=event.button.y;
             bool hovering=false;
             if(event.type==SDL_MOUSEBUTTONDOWN){
+
                 if(mouseX>=510 && mouseX<=730&&mouseY>=540&&mouseY<=650){
                     SDL_SetCursor(handCursor);
                     cout<<"Start game"<<endl;
@@ -62,13 +96,32 @@ int main(int argc,char *argv[]){
                     cout<<"Open guide"<<endl;
                     showGuide=true;
                 }
-                if(showGuide && mouseX>=1020&&mouseX<=1080&&mouseY>=70&&mouseY<=130){
-                    SDL_SetCursor(handCursor);
-                    cout<<"Close guide"<<endl;
-                    showGuide=false;
+                if(mouseX>=1100&&mouseX<=1170&&mouseY>=20&&mouseY<=90){
+                    if(volume){
+                        volume=false;
+                    }else{
+                        volume=true;
+                    }
                 }
+                if (isMouseOver(mouseX, mouseY, 510, 540, 220, 170) ||  // Play button
+                        isMouseOver(mouseX, mouseY, 580, 660, 75, 75) ||   // Guide button
+                        isMouseOver(mouseX, mouseY, 1020, 70, 60, 60) ||   // Close guide button
+                        isMouseOver(mouseX, mouseY, 1100, 20, 70, 70))  // Volume button
+                {
+                    if(!volume){
+                        Mix_PlayChannel(-1, clickSound, 0);
+                    }
+                        
+                   }
+            
+                if (buttonEvent.isPokemonClicked(mouseX, mouseY)) {
+                    if (isPlaying&&!volume) {
+                        Mix_PlayChannel(-1, clickSound, 0);
+                    }
+                }
+
             }
-                if(isMouseOver(mouseX, mouseY, 510, 540, 730, 710)||isMouseOver(mouseX, mouseY, 580, 660, 665, 735)||(showGuide&&isMouseOver(mouseX, mouseY, 870, 90, 930, 150))){
+                if(isMouseOver(mouseX, mouseY, 510, 540, 220, 170)||isMouseOver(mouseX, mouseY, 580, 660, 75, 75)||(showGuide&&isMouseOver(mouseX, mouseY, 870, 90, 930, 150))||isMouseOver(mouseX, mouseY, 1100, 20, 70, 70)){
                     SDL_SetCursor(handCursor);
                     hovering = true;
                 }
@@ -82,6 +135,7 @@ int main(int argc,char *argv[]){
             graphics.renderTexture(background, 0, 0, 1200, 950);
             graphics.renderTexture(playButton, 510, 540, 220, 170);
             graphics.renderTexture(guideButton, 580, 660, 75, 75);
+            
             if (showGuide) {
                 graphics.renderTexture(guideImage, 150, 100, 900, 750);
                 graphics.renderTexture(closeButton, 1020,70, 60, 60);
@@ -89,6 +143,12 @@ int main(int argc,char *argv[]){
             if(isPlaying){
                 graphics.renderTexture(playImage, 0, 0, 1200, 950);
                 graphics.renderTexture(timeIcon, 240, 95, 40, 40);
+                if(!volume){
+                    graphics.renderTexture(volumeOn, 1100, 20, 70, 70);
+                }else{
+                    graphics.renderTexture(volumeOff, 1100, 20, 70, 70);
+                }
+                
                 _score.render(30, 30);
             }
         
@@ -103,6 +163,10 @@ int main(int argc,char *argv[]){
         SDL_DestroyTexture(playButton);
         SDL_DestroyTexture(guideButton);
         SDL_DestroyTexture(closeButton);
+        Mix_FreeChunk(clickSound);
+        Mix_CloseAudio();
+
+
         return 0;
     }
 
