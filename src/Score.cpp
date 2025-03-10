@@ -49,5 +49,8 @@ void Score::render(int x, int y) {
     SDL_RenderCopy(renderer, texture, NULL, &scoreRect);
 }
 void Score::setScore(){
-
+    
+}
+int Score::getScore(){
+    return score;
 }

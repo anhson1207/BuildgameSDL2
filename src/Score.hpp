@@ -6,7 +6,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <string>
-//extern int globalScore;
+
 class Score {
 private:
     int score;
@@ -23,6 +23,7 @@ public:
     void addScore(int points);
     void render(int x, int y);
     void setScore();
+    int getScore();
 };
 
 

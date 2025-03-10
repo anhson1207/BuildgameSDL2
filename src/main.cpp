@@ -7,6 +7,7 @@
 #include <iostream>
 #include "TimeBar.hpp"
 #include "Score.hpp"
+#include "SoundManager.hpp"
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
 using namespace std;
@@ -30,26 +31,27 @@ int main(int argc,char *argv[]){
         cout << "Failed to load click sound! SDL_mixer Error: " << Mix_GetError() << endl;
         return -1;
     }
-
-
-
-
-    
+    SoundManager::GetInstance().LoadSounds();
     SDL_Renderer* renderer = graphics.getRenderer();
     SDL_Color colorTimeBar={120,255,255,255};
-    TimeBar timeBar(300,100,600,30,300000,colorTimeBar);
+    TimeBar timeBar(300,100,600,30,3000,colorTimeBar);
     Score _score(renderer);
     Controller _board(10,12);
     ButtonEvent buttonEvent(renderer,ROW,COL,&_score,&_board);
     SDL_Texture *background=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground1.jpeg");
     SDL_Texture *playButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/play.png");
     SDL_Texture *guideButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/guide.png");
-    SDL_Texture*guideImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/backgroundGuide.jpeg");
+    SDL_Texture*guideImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/backgroudGuide.png");
     SDL_Texture*closeButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/close.png");
     SDL_Texture*playImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground2.jpeg");
     SDL_Texture*timeIcon=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/time.png");
     SDL_Texture*volumeOn=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeUp.png");
     SDL_Texture*volumeOff=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeMute.png");
+    SDL_Texture*winInfo=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/win.jpeg");
+    SDL_Texture*loseInfo=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/lose.jpeg");
+    SDL_Texture*homeIcon=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/home.png");
+    SDL_Texture*guideButton2=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/bookGuide.png");
+    SDL_Texture*replay=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/replay.png");
     SDL_Cursor *handCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
     SDL_Cursor *arrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
     
@@ -91,18 +93,21 @@ int main(int argc,char *argv[]){
                     isPlaying=true;
                     timeBar.start();
                 }
-                if(mouseX>=580&&mouseX<=665&&mouseY>=660&&mouseY<=735){
+                if(mouseX>=580&&mouseX<=665&&mouseY>=660&&mouseY<=735&&!isPlaying){
                     SDL_SetCursor(handCursor);
                     cout<<"Open guide"<<endl;
                     showGuide=true;
                 }
-                if(mouseX>=1100&&mouseX<=1170&&mouseY>=20&&mouseY<=90){
-                    if(volume){
-                        volume=false;
-                    }else{
-                        volume=true;
+                if(mouseX >= 1100 && mouseX <= 1170 && mouseY >= 20 && mouseY <= 90) {
+                    volume = !volume;
+
+                    if (volume) {
+                        Mix_Volume(-1, 0);
+                    } else {
+                        Mix_Volume(-1, MIX_MAX_VOLUME);
                     }
                 }
+
                 if (isMouseOver(mouseX, mouseY, 510, 540, 220, 170) ||  // Play button
                         isMouseOver(mouseX, mouseY, 580, 660, 75, 75) ||   // Guide button
                         isMouseOver(mouseX, mouseY, 1020, 70, 60, 60) ||   // Close guide button
@@ -148,21 +153,36 @@ int main(int argc,char *argv[]){
                 }else{
                     graphics.renderTexture(volumeOff, 1100, 20, 70, 70);
                 }
-                
                 _score.render(30, 30);
+                if(_score.getScore()>=600){
+                    graphics.renderTexture(winInfo, 150, 100, 900, 750);
+                    graphics.renderTexture(homeIcon, 200, 700, 70, 70);
+                    graphics.renderTexture(replay, 480, 550, 250, 250);
+                    graphics.renderTexture(guideButton2, 930, 700, 70, 70);
+                    Mix_Volume(-1, 0);
+                    
+                }else if(timeBar.isTimeUp()){
+                    graphics.renderTexture(loseInfo, 150, 100, 900, 750);
+                    graphics.renderTexture(homeIcon, 200, 700, 70, 70);
+                    graphics.renderTexture(replay, 480, 550, 250, 250);
+                    graphics.renderTexture(guideButton2, 930, 700, 70, 70);
+                    Mix_Volume(-1, 0);
+                }else{
+                    timeBar.render(renderer);
+                    buttonEvent.renderBoard();
+                }
             }
         
             
         
-        timeBar.render(renderer);
         
-        buttonEvent.renderBoard();
         graphics.present();
         }
         SDL_DestroyTexture(background);
         SDL_DestroyTexture(playButton);
         SDL_DestroyTexture(guideButton);
         SDL_DestroyTexture(closeButton);
+        SoundManager::GetInstance().Cleanup();
         Mix_FreeChunk(clickSound);
         Mix_CloseAudio();
 

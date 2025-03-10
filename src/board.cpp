@@ -1,6 +1,7 @@
 #include <iostream>
 #include "board.hpp"
 #include "Score.hpp"
+#include "SoundManager.hpp"
 #include <random>
 #include <cstring>
 #include <queue>
@@ -161,21 +162,32 @@ void ButtonEvent::handleClick(int x, int y) {
     static int selectedX = -1, selectedY = -1;
 
     if (selectedX == -1 && selectedY == -1) {
+        
         selectedX = x;
         selectedY = y;
     } else {
-        if (selectedX != x || selectedY != y) {
-            if (controller.canConnect(selectedX, selectedY, x, y)&&controller.selectPokemon(selectedX, selectedY, x, y)) {
+        if (selectedX == x && selectedY == y) {
+           
+            SoundManager::GetInstance().PlayOhoSound();
+        } else {
+            if (controller.canConnect(selectedX, selectedY, x, y) &&
+                controller.selectPokemon(selectedX, selectedY, x, y)) {
+               
+                SoundManager::GetInstance().PlayLinkedSound();
+                
                 cout << "Matched: (" << selectedX << ", " << selectedY << ") -> (" << x << ", " << y << ")" << endl;
                 controller.removePair(selectedX, selectedY, x, y);
-                
-                if(score){
+
+                if (score) {
                     score->addScore(10);
                     score->setScore();
                 }
                 renderBoard();
+            } else {
+                SoundManager::GetInstance().PlayOhoSound();
             }
         }
+       
         selectedX = -1;
         selectedY = -1;
     }
