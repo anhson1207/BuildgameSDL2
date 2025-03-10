@@ -48,9 +48,9 @@ void Score::render(int x, int y) {
     SDL_Rect scoreRect = {x, y, 180, 50};
     SDL_RenderCopy(renderer, texture, NULL, &scoreRect);
 }
-void Score::setScore(){
-    
-}
+//void Score::resetScore(){
+//    score=0;
+//}
 int Score::getScore(){
     return score;
 }

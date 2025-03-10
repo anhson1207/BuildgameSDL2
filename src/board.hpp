@@ -48,7 +48,7 @@ public:
     void removePair(int x1, int y1, int x2, int y2);
     vector<pair<int, int>>findPath(int x1, int y1, int x2, int y2);
     bool selectPokemon(int x1,int y1,int x2,int y2);
-    
+    void reset();
 };
 
 class ButtonEvent{
@@ -57,11 +57,12 @@ private:
     SDL_Renderer *renderer;
     SDL_Texture *icon[36];
     Controller controller;
-    bool showBoard=false;
+    
     SDL_Texture *playButton;
     SDL_Rect playButtonRect;
     Controller* board;
 public:
+    bool showBoard=false;
     ButtonEvent(SDL_Renderer *ren,int row,int col,Score* _score,Controller* _board);
     void handleClick(int x, int y);
     void handleEvent(SDL_Event &event){

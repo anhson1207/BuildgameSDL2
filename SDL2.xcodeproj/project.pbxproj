@@ -9,10 +9,8 @@
 /* Begin PBXBuildFile section */
 		5858C72A2D7B2451008F81B3 /* Score.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 5858C7282D7B2451008F81B3 /* Score.cpp */; };
 		58604C332D5A052C0064B27C /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C312D5A052C0064B27C /* main.cpp */; };
-		58604C362D5A05740064B27C /* defs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C342D5A05740064B27C /* defs.cpp */; };
 		58604C392D5A058F0064B27C /* graphics.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C372D5A058F0064B27C /* graphics.cpp */; };
 		58604C3C2D5A061F0064B27C /* board.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C3A2D5A061F0064B27C /* board.cpp */; };
-		58604C3F2D5A063D0064B27C /* pikachu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C3D2D5A063D0064B27C /* pikachu.cpp */; };
 		58604C692D5A10ED0064B27C /* SoundManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58604C672D5A10ED0064B27C /* SoundManager.cpp */; };
 		589396FD2D5E271E00B31884 /* libSDL2_image-2.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 589396FC2D5E271E00B31884 /* libSDL2_image-2.0.0.dylib */; };
 		58D388B72D6D646200241172 /* TimeBar.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 58D388B52D6D646200241172 /* TimeBar.cpp */; };
@@ -51,14 +49,10 @@
 		5858C7292D7B2451008F81B3 /* Score.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Score.hpp; sourceTree = "<group>"; };
 		58604C312D5A052C0064B27C /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		58604C322D5A052C0064B27C /* main.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
-		58604C342D5A05740064B27C /* defs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = defs.cpp; sourceTree = "<group>"; };
-		58604C352D5A05740064B27C /* defs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = defs.hpp; sourceTree = "<group>"; };
 		58604C372D5A058F0064B27C /* graphics.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = graphics.cpp; sourceTree = "<group>"; };
 		58604C382D5A058F0064B27C /* graphics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = graphics.hpp; sourceTree = "<group>"; };
 		58604C3A2D5A061F0064B27C /* board.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = board.cpp; sourceTree = "<group>"; };
 		58604C3B2D5A061F0064B27C /* board.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = board.hpp; sourceTree = "<group>"; };
-		58604C3D2D5A063D0064B27C /* pikachu.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = pikachu.cpp; sourceTree = "<group>"; };
-		58604C3E2D5A063D0064B27C /* pikachu.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = pikachu.hpp; sourceTree = "<group>"; };
 		58604C422D5A0CB80064B27C /* pikachu_image26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikachu_image26.png; path = assests/image/pikachu_image26.png; sourceTree = SOURCE_ROOT; };
 		58604C432D5A0CB80064B27C /* pikachu_image34.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikachu_image34.png; path = assests/image/pikachu_image34.png; sourceTree = SOURCE_ROOT; };
 		58604C442D5A0CB80064B27C /* pikachu_image35.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = pikachu_image35.png; path = assests/image/pikachu_image35.png; sourceTree = SOURCE_ROOT; };
@@ -136,14 +130,10 @@
 			children = (
 				58604C312D5A052C0064B27C /* main.cpp */,
 				58604C322D5A052C0064B27C /* main.hpp */,
-				58604C342D5A05740064B27C /* defs.cpp */,
-				58604C352D5A05740064B27C /* defs.hpp */,
 				58604C372D5A058F0064B27C /* graphics.cpp */,
 				58604C382D5A058F0064B27C /* graphics.hpp */,
 				58604C3A2D5A061F0064B27C /* board.cpp */,
 				58604C3B2D5A061F0064B27C /* board.hpp */,
-				58604C3D2D5A063D0064B27C /* pikachu.cpp */,
-				58604C3E2D5A063D0064B27C /* pikachu.hpp */,
 				58604C672D5A10ED0064B27C /* SoundManager.cpp */,
 				58604C682D5A10ED0064B27C /* SoundManager.hpp */,
 				58D388B52D6D646200241172 /* TimeBar.cpp */,
@@ -379,9 +369,7 @@
 				58604C3C2D5A061F0064B27C /* board.cpp in Sources */,
 				58604C392D5A058F0064B27C /* graphics.cpp in Sources */,
 				58604C692D5A10ED0064B27C /* SoundManager.cpp in Sources */,
-				58604C362D5A05740064B27C /* defs.cpp in Sources */,
 				5858C72A2D7B2451008F81B3 /* Score.cpp in Sources */,
-				58604C3F2D5A063D0064B27C /* pikachu.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,13 +12,16 @@ public:
     void LoadSounds();
     void PlayLinkedSound();
     void PlayOhoSound();
+    void PlayWinSound();
+    void PlayLoseSound();
     void Cleanup();
 private:
     SoundManager() = default;
     ~SoundManager() = default;
     Mix_Chunk* soundLinked = nullptr;
     Mix_Chunk* soundOho = nullptr;
-
+    Mix_Chunk *soundWin=nullptr;
+    Mix_Chunk *soundLose=nullptr;
 };
 
 #endif 

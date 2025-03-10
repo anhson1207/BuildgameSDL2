@@ -60,6 +60,7 @@ int main(int argc,char *argv[]){
     bool showGuide=false;
     bool isPlaying=false;
     bool volume=false;
+    bool hasPlayedSound = false;
     SDL_Event event;
     while(running){
         while (SDL_PollEvent(&event)) {
@@ -80,23 +81,71 @@ int main(int argc,char *argv[]){
                     }
                     continue;
                 }
-
-            buttonEvent.handleEvent(event);
+            
+            
             int mouseX=event.button.x;
             int mouseY=event.button.y;
             bool hovering=false;
             if(event.type==SDL_MOUSEBUTTONDOWN){
 
-                if(mouseX>=510 && mouseX<=730&&mouseY>=540&&mouseY<=650){
+                if(mouseX>=510 && mouseX<=730&&mouseY>=540&&mouseY<=650&&!isPlaying){
                     SDL_SetCursor(handCursor);
                     cout<<"Start game"<<endl;
                     isPlaying=true;
                     timeBar.start();
                 }
+                if(isPlaying){
+                    buttonEvent.handleEvent(event);
+                }
                 if(mouseX>=580&&mouseX<=665&&mouseY>=660&&mouseY<=735&&!isPlaying){
                     SDL_SetCursor(handCursor);
                     cout<<"Open guide"<<endl;
                     showGuide=true;
+                }
+                if (isPlaying &&
+                    ((mouseX >= 930 && mouseX <= 1000 && mouseY >= 700 && mouseY <= 770 && timeBar.isTimeUp()) ||
+                     (mouseX >= 930 && mouseX <= 1000 && mouseY >= 700 && mouseY <= 770 && _score.getScore() >= 600))) {
+                    SDL_SetCursor(handCursor);
+                    cout << "Open guide 2" << endl;
+                    showGuide = true;
+                }
+                if (isPlaying &&
+                    ((mouseX >= 200 && mouseX <= 270 && mouseY >= 700 && mouseY <= 770 && timeBar.isTimeUp()) ||
+                     (mouseX >= 200 && mouseX <= 270 && mouseY >= 700 && mouseY <= 770 && _score.getScore() >= 600))) {
+                    SDL_SetCursor(handCursor);
+                    cout<<"Go home"<<endl;
+                    isPlaying = false;
+                       showGuide = false;
+                       hasPlayedSound = false;
+                       _score.resetScore();
+                    _score.updateTexture();
+                       _board.reset();
+                       timeBar.isTimeUp();
+                    Mix_Volume(-1, MIX_MAX_VOLUME);
+                       // Xóa màn hình và vẽ lại giao diện ban đầu
+                       graphics.clear();
+                       graphics.renderTexture(background, 0, 0, 1200, 950);
+                       graphics.renderTexture(playButton, 510, 540, 220, 170);
+                       graphics.renderTexture(guideButton, 580, 660, 75, 75);
+                       graphics.present();
+                }
+                
+
+                if(mouseX>=480&&mouseX<=700&&mouseY>=550&&mouseY<=710&&timeBar.isTimeUp()&&!showGuide&&isPlaying){
+                    SDL_SetCursor(handCursor);
+                    cout<<"Replay game"<<endl;
+                    isPlaying=true;
+                    timeBar.start();
+                    _score.resetScore();
+                    _score.updateTexture();
+                    hasPlayedSound=false;
+                    Mix_Volume(-1, MIX_MAX_VOLUME);
+                    _board.reset();
+                    cout << "Matrix after reset:" << endl;
+                    _board.showMatrix();
+                    _board.getMatrix();
+                    buttonEvent.renderBoard();
+                    
                 }
                 if(mouseX >= 1100 && mouseX <= 1170 && mouseY >= 20 && mouseY <= 90) {
                     volume = !volume;
@@ -107,26 +156,26 @@ int main(int argc,char *argv[]){
                         Mix_Volume(-1, MIX_MAX_VOLUME);
                     }
                 }
-
-                if (isMouseOver(mouseX, mouseY, 510, 540, 220, 170) ||  // Play button
+                
+                    if (isMouseOver(mouseX, mouseY, 510, 540, 220, 170) ||  // Play button
                         isMouseOver(mouseX, mouseY, 580, 660, 75, 75) ||   // Guide button
                         isMouseOver(mouseX, mouseY, 1020, 70, 60, 60) ||   // Close guide button
                         isMouseOver(mouseX, mouseY, 1100, 20, 70, 70))  // Volume button
-                {
-                    if(!volume){
-                        Mix_PlayChannel(-1, clickSound, 0);
-                    }
+                    {
+                        if(!volume){
+                            Mix_PlayChannel(-1, clickSound, 0);
+                        }
                         
-                   }
-            
-                if (buttonEvent.isPokemonClicked(mouseX, mouseY)) {
-                    if (isPlaying&&!volume) {
-                        Mix_PlayChannel(-1, clickSound, 0);
                     }
-                }
-
+                    
+                    if (buttonEvent.isPokemonClicked(mouseX, mouseY)) {
+                        if (isPlaying&&!volume) {
+                            Mix_PlayChannel(-1, clickSound, 0);
+                        }
+                    }
+                    
             }
-                if(isMouseOver(mouseX, mouseY, 510, 540, 220, 170)||isMouseOver(mouseX, mouseY, 580, 660, 75, 75)||(showGuide&&isMouseOver(mouseX, mouseY, 870, 90, 930, 150))||isMouseOver(mouseX, mouseY, 1100, 20, 70, 70)){
+                if(isMouseOver(mouseX, mouseY, 510, 540, 220, 170)||isMouseOver(mouseX, mouseY, 580, 660, 75, 75)||(showGuide&&isMouseOver(mouseX, mouseY, 870, 90, 930, 150))||isMouseOver(mouseX, mouseY, 1100, 20, 70, 70)||isMouseOver(mouseX, mouseY, 930, 700, 70, 70)||isMouseOver(mouseX, mouseY, 200, 700, 70, 70)){
                     SDL_SetCursor(handCursor);
                     hovering = true;
                 }
@@ -140,11 +189,7 @@ int main(int argc,char *argv[]){
             graphics.renderTexture(background, 0, 0, 1200, 950);
             graphics.renderTexture(playButton, 510, 540, 220, 170);
             graphics.renderTexture(guideButton, 580, 660, 75, 75);
-            
-            if (showGuide) {
-                graphics.renderTexture(guideImage, 150, 100, 900, 750);
-                graphics.renderTexture(closeButton, 1020,70, 60, 60);
-            }
+    
             if(isPlaying){
                 graphics.renderTexture(playImage, 0, 0, 1200, 950);
                 graphics.renderTexture(timeIcon, 240, 95, 40, 40);
@@ -159,6 +204,12 @@ int main(int argc,char *argv[]){
                     graphics.renderTexture(homeIcon, 200, 700, 70, 70);
                     graphics.renderTexture(replay, 480, 550, 250, 250);
                     graphics.renderTexture(guideButton2, 930, 700, 70, 70);
+                    
+                    if (!hasPlayedSound) {
+                           SoundManager::GetInstance().PlayWinSound();
+                           hasPlayedSound = true;
+                        SDL_Delay(500);
+                       }
                     Mix_Volume(-1, 0);
                     
                 }else if(timeBar.isTimeUp()){
@@ -166,16 +217,22 @@ int main(int argc,char *argv[]){
                     graphics.renderTexture(homeIcon, 200, 700, 70, 70);
                     graphics.renderTexture(replay, 480, 550, 250, 250);
                     graphics.renderTexture(guideButton2, 930, 700, 70, 70);
+                    
+                    if (!hasPlayedSound) {
+                           SoundManager::GetInstance().PlayLoseSound();
+                           hasPlayedSound = true;
+                        SDL_Delay(500);
+                       }
                     Mix_Volume(-1, 0);
                 }else{
                     timeBar.render(renderer);
                     buttonEvent.renderBoard();
                 }
             }
-        
-            
-        
-        
+        if (showGuide) {
+            graphics.renderTexture(guideImage, 150, 100, 900, 750);
+            graphics.renderTexture(closeButton, 1020,70, 60, 60);
+        }
         graphics.present();
         }
         SDL_DestroyTexture(background);
@@ -185,8 +242,6 @@ int main(int argc,char *argv[]){
         SoundManager::GetInstance().Cleanup();
         Mix_FreeChunk(clickSound);
         Mix_CloseAudio();
-
-
         return 0;
     }
 

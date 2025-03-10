@@ -58,6 +58,13 @@ void Controller::createMatrix() {
         }
     } while (i < row * col / 2);
 }
+void Controller::reset() {
+    cout << "Reset Board!" << endl;
+    matrix.clear();
+    matrix.resize(row, vector<int>(col, 0));
+    createMatrix();
+    showMatrix();
+}
 
 ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col,Score *_score,Controller *_board) : renderer(ren), controller(row, col) {
     board=_board;
@@ -95,7 +102,7 @@ void ButtonEvent::renderBoard() {
     for (int i = 0; i < ROW; i++) {
         for (int j = 0; j < COL; j++) {
             int index = matrix[i][j];
-            if (index > 0) {
+                    if (index > 0) {
                 SDL_Rect rect = {boardX + j * ICON_SIZE, boardY + i * ICON_SIZE, ICON_SIZE, ICON_SIZE};
                 SDL_RenderCopy(renderer, icon[index], nullptr, &rect);
             }
@@ -158,7 +165,9 @@ void Controller::removePair(int x1, int y1, int x2, int y2) {
     matrix[x2][y2] = 0;
 }
 
+
 void ButtonEvent::handleClick(int x, int y) {
+    if(!showBoard) return ;
     static int selectedX = -1, selectedY = -1;
 
     if (selectedX == -1 && selectedY == -1) {
@@ -180,7 +189,6 @@ void ButtonEvent::handleClick(int x, int y) {
 
                 if (score) {
                     score->addScore(10);
-                    score->setScore();
                 }
                 renderBoard();
             } else {
