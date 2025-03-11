@@ -66,7 +66,7 @@ void Controller::reset() {
     showMatrix();
 }
 
-ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col,Score *_score,Controller *_board) : renderer(ren), controller(row, col) {
+ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col,Score *_score,Controller *_board) : renderer(ren) {
     board=_board;
     score=_score;
     showBoard = false;
@@ -95,7 +95,7 @@ void ButtonEvent::renderBoard() {
         SDL_RenderCopy(renderer, playButton, nullptr, &playButtonRect);
         return;
     }
-    auto matrix = controller.getMatrix();
+    auto matrix = board->getMatrix();
     int boardX = (1200 - (COL * ICON_SIZE)) / 2;
     int boardY = (950 - (ROW * ICON_SIZE)) / 2;
 
@@ -179,13 +179,13 @@ void ButtonEvent::handleClick(int x, int y) {
            
             SoundManager::GetInstance().PlayOhoSound();
         } else {
-            if (controller.canConnect(selectedX, selectedY, x, y) &&
-                controller.selectPokemon(selectedX, selectedY, x, y)) {
+            if (board->canConnect(selectedX, selectedY, x, y) &&
+                board->selectPokemon(selectedX, selectedY, x, y)) {
                
                 SoundManager::GetInstance().PlayLinkedSound();
                 
                 cout << "Matched: (" << selectedX << ", " << selectedY << ") -> (" << x << ", " << y << ")" << endl;
-                controller.removePair(selectedX, selectedY, x, y);
+                board->removePair(selectedX, selectedY, x, y);
 
                 if (score) {
                     score->addScore(10);

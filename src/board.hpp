@@ -56,7 +56,7 @@ private:
     Score *score;
     SDL_Renderer *renderer;
     SDL_Texture *icon[36];
-    Controller controller;
+    //Controller controller;
     
     SDL_Texture *playButton;
     SDL_Rect playButtonRect;

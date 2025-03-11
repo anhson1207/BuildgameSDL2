@@ -21,9 +21,7 @@ public:
     ~Score();
     void addScore(int points);
     void render(int x, int y);
-    void resetScore(){
-        score=0;
-    };
+    void resetScore();
     int getScore();
     void updateTexture();
 

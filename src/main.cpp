@@ -34,7 +34,7 @@ int main(int argc,char *argv[]){
     SoundManager::GetInstance().LoadSounds();
     SDL_Renderer* renderer = graphics.getRenderer();
     SDL_Color colorTimeBar={120,255,255,255};
-    TimeBar timeBar(300,100,600,30,3000,colorTimeBar);
+    TimeBar timeBar(300,100,600,30,360000,colorTimeBar);
     Score _score(renderer);
     Controller _board(10,12);
     ButtonEvent buttonEvent(renderer,ROW,COL,&_score,&_board);
@@ -81,8 +81,6 @@ int main(int argc,char *argv[]){
                     }
                     continue;
                 }
-            
-            
             int mouseX=event.button.x;
             int mouseY=event.button.y;
             bool hovering=false;
@@ -93,6 +91,28 @@ int main(int argc,char *argv[]){
                     cout<<"Start game"<<endl;
                     isPlaying=true;
                     timeBar.start();
+                    _score.resetScore();
+                    _score.updateTexture();
+                    hasPlayedSound=false;
+                    Mix_Volume(-1, MIX_MAX_VOLUME);
+                    _board.reset();
+                    buttonEvent.showBoard = true;
+                        cout << "Matrix after reset:" << endl;
+                        _board.showMatrix();
+                        graphics.clear();
+                        graphics.renderTexture(playImage, 0, 0, 1200, 950);
+                        graphics.renderTexture(timeIcon, 240, 95, 40, 40);
+                        
+                        if(!volume){
+                            graphics.renderTexture(volumeOn, 1100, 20, 70, 70);
+                        }else{
+                            graphics.renderTexture(volumeOff, 1100, 20, 70, 70);
+                        }
+
+                        _score.render(30, 30);
+                        timeBar.render(renderer);
+                        buttonEvent.renderBoard();
+                        graphics.present();
                 }
                 if(isPlaying){
                     buttonEvent.handleEvent(event);
@@ -122,7 +142,6 @@ int main(int argc,char *argv[]){
                        _board.reset();
                        timeBar.isTimeUp();
                     Mix_Volume(-1, MIX_MAX_VOLUME);
-                       // Xóa màn hình và vẽ lại giao diện ban đầu
                        graphics.clear();
                        graphics.renderTexture(background, 0, 0, 1200, 950);
                        graphics.renderTexture(playButton, 510, 540, 220, 170);
@@ -141,10 +160,24 @@ int main(int argc,char *argv[]){
                     hasPlayedSound=false;
                     Mix_Volume(-1, MIX_MAX_VOLUME);
                     _board.reset();
-                    cout << "Matrix after reset:" << endl;
-                    _board.showMatrix();
-                    _board.getMatrix();
-                    buttonEvent.renderBoard();
+                        cout << "Matrix after reset:" << endl;
+                        _board.showMatrix();
+
+                        graphics.clear();
+                        graphics.renderTexture(playImage, 0, 0, 1200, 950);
+                        graphics.renderTexture(timeIcon, 240, 95, 40, 40);
+                        
+                        if(!volume){
+                            graphics.renderTexture(volumeOn, 1100, 20, 70, 70);
+                        }else{
+                            graphics.renderTexture(volumeOff, 1100, 20, 70, 70);
+                        }
+
+                        _score.render(30, 30);
+                        timeBar.render(renderer);
+                        buttonEvent.renderBoard();
+                        
+                        graphics.present();
                     
                 }
                 if(mouseX >= 1100 && mouseX <= 1170 && mouseY >= 20 && mouseY <= 90) {
