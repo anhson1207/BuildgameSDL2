@@ -19,13 +19,11 @@ struct Point{
 class Controller{
 private:
     int row,col;
-    
 public:
     vector<vector<int>>matrix;
     Controller(int _row,int _col);
     void showMatrix();
     void createMatrix();
-    
     int getRow(){
         return row;
     }
@@ -56,8 +54,6 @@ private:
     Score *score;
     SDL_Renderer *renderer;
     SDL_Texture *icon[36];
-    //Controller controller;
-    
     SDL_Texture *playButton;
     SDL_Rect playButtonRect;
     Controller* board;

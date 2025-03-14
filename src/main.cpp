@@ -1,4 +1,3 @@
-#include "main.hpp"
 #include "graphics.hpp"
 #include "board.hpp"
 #include "GameScene.hpp"
@@ -14,44 +13,55 @@ using namespace std;
 bool isMouseOver(int mouseX,int mouseY,int x,int y,int w,int h){
     return (mouseX>=x&&mouseX<=x+w&&mouseY>=y&&mouseY<=y+h);
 }
+Graphics graphics;
+SDL_Texture *background, *playButton, *guideButton, *guideImage, *closeButton;
+SDL_Texture *playImage, *timeIcon, *volumeOn, *volumeOff, *winInfo, *loseInfo;
+SDL_Texture *homeIcon, *guideButton2, *replay;
+Mix_Chunk* clickSound;
 
+
+
+void loadTextures() {
+    background = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground1.jpeg");
+    playButton = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/play.png");
+    guideButton = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/guide.png");
+    guideImage = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/backgroudGuide.png");
+    closeButton = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/close.png");
+    playImage = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground2.jpeg");
+    timeIcon = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/time.png");
+    volumeOn = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeUp.png");
+    volumeOff = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeMute.png");
+    winInfo = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/win.jpeg");
+    loseInfo = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/lose.jpeg");
+    homeIcon = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/home.png");
+    guideButton2 = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/bookGuide.png");
+    replay = graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/replay.png");
+}
 int main(int argc,char *argv[]){
-    Graphics graphics;
     if(!graphics.init()){
         return -1;
     }
-    //Sounds Effect
+    
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
         cout << "SDL_mixer could not initialize! SDL_mixer Error: " << Mix_GetError() << endl;
         return -1;
     }
     
-    Mix_Chunk* clickSound = Mix_LoadWAV("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/sounds/click.wav");
+    clickSound= Mix_LoadWAV("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/sounds/click.wav");
     if (clickSound == nullptr) {
         cout << "Failed to load click sound! SDL_mixer Error: " << Mix_GetError() << endl;
         return -1;
     }
     SoundManager::GetInstance().LoadSounds();
+   
     SDL_Renderer* renderer = graphics.getRenderer();
     SDL_Color colorTimeBar={120,255,255,255};
-    TimeBar timeBar(300,100,600,30,360000,colorTimeBar);
+    TimeBar timeBar(300,100,600,30,420000,colorTimeBar);
     Score _score(renderer);
     Controller _board(10,12);
     ButtonEvent buttonEvent(renderer,ROW,COL,&_score,&_board);
-    SDL_Texture *background=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground1.jpeg");
-    SDL_Texture *playButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/play.png");
-    SDL_Texture *guideButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/guide.png");
-    SDL_Texture*guideImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/backgroudGuide.png");
-    SDL_Texture*closeButton=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/close.png");
-    SDL_Texture*playImage=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pokemonBackground2.jpeg");
-    SDL_Texture*timeIcon=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/time.png");
-    SDL_Texture*volumeOn=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeUp.png");
-    SDL_Texture*volumeOff=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/VolumeMute.png");
-    SDL_Texture*winInfo=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/win.jpeg");
-    SDL_Texture*loseInfo=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/lose.jpeg");
-    SDL_Texture*homeIcon=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/home.png");
-    SDL_Texture*guideButton2=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/bookGuide.png");
-    SDL_Texture*replay=graphics.loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/replay.png");
+    
+    loadTextures();
     SDL_Cursor *handCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_HAND);
     SDL_Cursor *arrowCursor = SDL_CreateSystemCursor(SDL_SYSTEM_CURSOR_ARROW);
     
@@ -273,8 +283,6 @@ int main(int argc,char *argv[]){
         SDL_DestroyTexture(guideButton);
         SDL_DestroyTexture(closeButton);
         SoundManager::GetInstance().Cleanup();
-        Mix_FreeChunk(clickSound);
         Mix_CloseAudio();
         return 0;
     }
-
