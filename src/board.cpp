@@ -91,10 +91,7 @@ SDL_Texture *ButtonEvent::loadTexture(const string &path) {
 }
 
 void ButtonEvent::renderBoard() {
-    if (!showBoard) {
-        SDL_RenderCopy(renderer, playButton, nullptr, &playButtonRect);
-        return;
-    }
+
     auto matrix = board->getMatrix();
     int boardX = (1200 - (COL * ICON_SIZE)) / 2;
     int boardY = (950 - (ROW * ICON_SIZE)) / 2;

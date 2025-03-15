@@ -138,6 +138,7 @@ int main(int argc,char *argv[]){
                     SDL_SetCursor(handCursor);
                     cout << "Open guide 2" << endl;
                     showGuide = true;
+                    
                 }
                 if (isPlaying &&
                     ((mouseX >= 200 && mouseX <= 270 && mouseY >= 700 && mouseY <= 770 && timeBar.isTimeUp()) ||
