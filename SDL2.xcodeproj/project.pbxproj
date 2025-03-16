@@ -100,6 +100,10 @@
 		589B86E42D5E4C3100181DBF /* pokemonBackground1.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = pokemonBackground1.jpeg; sourceTree = "<group>"; };
 		58D388B52D6D646200241172 /* TimeBar.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeBar.cpp; sourceTree = "<group>"; };
 		58D388B62D6D646200241172 /* TimeBar.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeBar.hpp; sourceTree = "<group>"; };
+		58E52DBC2D8676F0000C6A01 /* constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = constants.h; sourceTree = "<group>"; };
+		58E52DBD2D86862D000C6A01 /* musicGame.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = musicGame.wav; path = assests/sounds/musicGame.wav; sourceTree = SOURCE_ROOT; };
+		58E52DBE2D86864E000C6A01 /* musicOff.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicOff.png; sourceTree = "<group>"; };
+		58E52DBF2D86865A000C6A01 /* musicOn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = musicOn.png; sourceTree = "<group>"; };
 		58F5502E2D578FF90032DC99 /* SDL2 */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SDL2; sourceTree = BUILT_PRODUCTS_DIR; };
 		58F550392D5792B60032DC99 /* libSDL2-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2-2.0.0.dylib"; path = "../../../../../opt/homebrew/Cellar/sdl2/2.30.12/lib/libSDL2-2.0.0.dylib"; sourceTree = "<group>"; };
 		58F5503B2D579AAE0032DC99 /* libSDL2_ttf-2.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libSDL2_ttf-2.0.0.dylib"; path = "../../../../../opt/homebrew/Cellar/sdl2_ttf/2.24.0/lib/libSDL2_ttf-2.0.0.dylib"; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				58D388B62D6D646200241172 /* TimeBar.hpp */,
 				5858C7282D7B2451008F81B3 /* Score.cpp */,
 				5858C7292D7B2451008F81B3 /* Score.hpp */,
+				58E52DBC2D8676F0000C6A01 /* constants.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -164,6 +169,8 @@
 		58604C402D5A06770064B27C /* image */ = {
 			isa = PBXGroup;
 			children = (
+				58E52DBF2D86865A000C6A01 /* musicOn.png */,
+				58E52DBE2D86864E000C6A01 /* musicOff.png */,
 				58495A682D7DE76000FCBA4D /* replay.png */,
 				58495A672D7DDF6500FCBA4D /* lose.jpeg */,
 				58495A662D7DDF5C00FCBA4D /* win.jpeg */,
@@ -221,6 +228,7 @@
 		58604C662D5A0F9D0064B27C /* sounds */ = {
 			isa = PBXGroup;
 			children = (
+				58E52DBD2D86862D000C6A01 /* musicGame.wav */,
 				58604C6D2D5A12360064B27C /* click.wav */,
 				58604C6B2D5A12360064B27C /* linked.wav */,
 				58604C6A2D5A12360064B27C /* no_move.wav */,

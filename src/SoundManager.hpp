@@ -14,14 +14,18 @@ public:
     void PlayOhoSound();
     void PlayWinSound();
     void PlayLoseSound();
+    void PlayMusicGameSound();
     void Cleanup();
-private:
-    SoundManager() = default;
-    ~SoundManager() = default;
+    
     Mix_Chunk* soundLinked = nullptr;
     Mix_Chunk* soundOho = nullptr;
     Mix_Chunk *soundWin=nullptr;
     Mix_Chunk *soundLose=nullptr;
+    Mix_Chunk *soundMusicGame=nullptr;
+private:
+    SoundManager() = default;
+    ~SoundManager() = default;
+    
 };
 
 #endif 

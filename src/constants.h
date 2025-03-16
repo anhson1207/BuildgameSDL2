@@ -1,12 +1,69 @@
-//
-//  constants.h
-//  SDL2
-//
-//  Created by Nguyễn Anh Sơn on 16/03/2025.
-//
-
 #ifndef constants_h
 #define constants_h
+extern const int colorR;
+extern const int colorG;
+extern const int colorB;
+extern const int colorAlpha;
+extern const int timeBarX;
+extern const int timeBarY;
+extern const int timeBarWidth;
+extern const int timeBarHeight;
+extern const int timeBarTotalTime;
+extern const int closeButtonX;
+extern const int closeButtonY;
+extern const int closeButtonWidth;
+extern const int closeButtonHeight;
+extern const int playButtonX;
+extern const int playButtonY;
+extern const int playButtonWidth;
+extern const int playButtonHeight;
+extern const int playImageX;
+extern const int playImageY;
+extern const int timeIconX;
+extern const int timeIconY;
+extern const int timeIconWidth;
+extern const int timeIconHeight;
+extern const int volumeX;
+extern const int volumeY;
+extern const int volumeWidth;
+extern const int volumeheight;
+extern const int scoreX;
+extern const int scoreY;
+extern const int guideButtonX;
+extern const int guideButtonY;
+extern const int guideButtonWidth;
+extern const int guideButtonHeight;
+extern const int guideButton2X;
+extern const int guideButton2Y;
+extern const int guideButton2Width;
+extern const int guideButton2Height;
+extern const int homeIconX;
+extern const int homeIconY;
+extern const int homeIconWidth;
+extern const int homeIconHeight;
+extern const int delay;
+extern const int replayX;
+extern const int replayY;
+extern const int replayWidth;
+extern const int replayHeight;
+extern const int winInfoX;
+extern const int winInfoY;
+extern const int winInfoWidth;
+extern const int winInfoHeight;
+extern const int numberScore;
+extern const int SCREEN_WIDTH;
+extern const int SCREEN_HEIGHT;
+extern const int ROW;
+extern const int COL;
+extern const int ICON_SIZE;
+extern const int numberIconPokemon;
+extern const int musicButtonX;
+extern const int musicButtonY;
+extern const int musicButtonWidth;
+extern const int musicButtonHeight;
+extern const int delayMusic;
+
+
 
 
 #endif /* constants_h */

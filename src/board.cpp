@@ -6,8 +6,11 @@
 #include <cstring>
 #include <queue>
 #include <vector>
+#include "constants.h"
 const int dx[4] = {-1, 1, 0, 0};
 const int dy[4] = {0, 0, -1, 1};
+
+
 using namespace std;
 struct Node {
     int x, y, dir, turns;
@@ -21,6 +24,8 @@ Controller::Controller(int _row, int _col) {
     showMatrix();
 }
 
+
+
 void Controller::showMatrix() {
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
@@ -33,10 +38,14 @@ void Controller::showMatrix() {
 void Controller::createMatrix() {
     matrix.resize(row, vector<int>(col, 0));
     srand((unsigned int) time(0));
-    int imgCount = 36;
+    int imgCount = numberIconPokemon;
     int max = 4;
     vector<int> arr(imgCount + 1, 0);
     vector<Point> listPoint;
+    
+    cout<<replayX<<" "<<replayY<<" ";
+    
+    
     for (int i = 0; i < row; i++) {
         for (int j = 0; j < col; j++) {
             listPoint.push_back(Point(i, j));
@@ -71,12 +80,12 @@ ButtonEvent::ButtonEvent(SDL_Renderer *ren, int row, int col,Score *_score,Contr
     score=_score;
     showBoard = false;
     playButton = loadTexture("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/0.png1");
-    playButtonRect = {510, 540, 220, 110};
+    playButtonRect = {playButtonX,playButtonY,playButtonWidth,playButtonHeight};
     loadIcon();
 }
 
 void ButtonEvent::loadIcon() {
-    for (int i = 1; i <= 36; i++) {
+    for (int i = 1; i <= numberIconPokemon; i++) {
         string path = "/Users/nguyenanhson/Documents/BuildgameSDL2/assests/image/pikachu_image" + to_string(i) + ".png";
         icon[i] = loadTexture(path);
     }
@@ -93,8 +102,8 @@ SDL_Texture *ButtonEvent::loadTexture(const string &path) {
 void ButtonEvent::renderBoard() {
 
     auto matrix = board->getMatrix();
-    int boardX = (1200 - (COL * ICON_SIZE)) / 2;
-    int boardY = (950 - (ROW * ICON_SIZE)) / 2;
+    int boardX = (SCREEN_WIDTH - (COL * ICON_SIZE)) / 2;
+    int boardY = (SCREEN_HEIGHT - (ROW * ICON_SIZE)) / 2;
 
     for (int i = 0; i < ROW; i++) {
         for (int j = 0; j < COL; j++) {
@@ -185,7 +194,7 @@ void ButtonEvent::handleClick(int x, int y) {
                 board->removePair(selectedX, selectedY, x, y);
 
                 if (score) {
-                    score->addScore(10);
+                    score->addScore(numberScore);
                 }
                 renderBoard();
             } else {
@@ -202,8 +211,8 @@ bool ButtonEvent::isMouseOver(int mouseX, int mouseY, int x, int y, int w, int h
 }
 
 bool ButtonEvent::isPokemonClicked(int mouseX, int mouseY){
-    int boardX = (1200 - (COL * ICON_SIZE)) / 2;
-    int boardY = (950 - (ROW * ICON_SIZE)) / 2;
+    int boardX = (SCREEN_WIDTH - (COL * ICON_SIZE)) / 2;
+    int boardY = (SCREEN_HEIGHT - (ROW * ICON_SIZE)) / 2;
     for(int i=0;i<ROW;i++){
         for(int j=0;j<COL;j++){
             if(board->matrix[i][j]!=0){

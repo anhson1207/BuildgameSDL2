@@ -1,17 +1,24 @@
 #include "Score.hpp"
 #include <iostream>
 using namespace std;
+const int scoreWidth=180;
+const int scoreHeight=50;
+const int font_Size=28;
+const int colorR=145;
+const int colorG=235;
+const int colorB=247;
+const int colorAlpha=255;
 Score::Score(SDL_Renderer* renderer): score(0), renderer(renderer), texture(nullptr) {
     if (TTF_Init() == -1) {
         cout << "TTF_Init failed: " << TTF_GetError() << endl;
     }
 
-    font = TTF_OpenFont("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/Roboto-VariableFont_wdth,wght.ttf", 28);
+    font = TTF_OpenFont("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/Roboto-VariableFont_wdth,wght.ttf", font_Size);
     if (!font) {
         cout << "Failed to load font: " << TTF_GetError() << endl;
     }
     
-    color = {145, 235, 247, 255};
+    color = {colorR,colorG,colorB,colorAlpha};
     updateTexture();
 }
 
@@ -46,7 +53,7 @@ void Score::addScore(int points) {
 void Score::render(int x, int y) {
     if (!texture) return;
 
-    SDL_Rect scoreRect = {x, y, 180, 50};
+    SDL_Rect scoreRect = {x, y, scoreWidth, scoreHeight};
     SDL_RenderCopy(renderer, texture, NULL, &scoreRect);
 }
 void Score::resetScore(){

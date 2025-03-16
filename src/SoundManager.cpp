@@ -10,6 +10,7 @@ void SoundManager::LoadSounds() {
     soundOho = Mix_LoadWAV("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/sounds/oho.wav");
     soundWin=Mix_LoadWAV("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/sounds/win.wav");
     soundLose=Mix_LoadWAV("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/sounds/no_move.wav");
+    soundMusicGame=Mix_LoadWAV("/Users/nguyenanhson/Documents/BuildgameSDL2/assests/sounds/musicGame.wav");
     if (!soundLinked) {
        cout<< "Failed to load linked.wav: " << Mix_GetError() <<endl;
     }
@@ -21,6 +22,9 @@ void SoundManager::LoadSounds() {
     }
     if(!soundLose){
         cout<< "Failed to load lose.wav: " << Mix_GetError() <<endl;
+    }
+    if(!soundMusicGame){
+        cout<< "Failed to load musicGame.wav: " << Mix_GetError() <<endl;
     }
 }
 void SoundManager::PlayLinkedSound() {
@@ -44,6 +48,13 @@ void SoundManager::PlayLoseSound(){
         Mix_PlayChannel(-1, soundLose, 0);
     }
 }
+void SoundManager::PlayMusicGameSound(){
+    if(soundMusicGame!=nullptr){
+        
+        Mix_HaltMusic();
+        Mix_PlayChannel(-1, soundMusicGame, -1);
+    }
+}
 void SoundManager::Cleanup() {
     if (soundLinked) {
         Mix_FreeChunk(soundLinked);
@@ -60,6 +71,10 @@ void SoundManager::Cleanup() {
     if (soundLose) {
         Mix_FreeChunk(soundLose);
         soundLose = nullptr;
+    }
+    if(soundMusicGame){
+        Mix_FreeChunk(soundMusicGame);
+        soundMusicGame=nullptr;
     }
 }
 

@@ -7,11 +7,9 @@
 #include <cstdlib>
 #include <ctime>
 #include "Score.hpp"
+#include "graphics.hpp"
+#include "constants.h"
 using namespace std;
-
- const int ROW=10,COL=12;
- const int ICON_SIZE=65;
-
 struct Point{
     int x,y;
     Point(int _x,int _y): x(_x),y(_y){}
@@ -72,8 +70,8 @@ public:
         }
             int mouseX=event.button.x;
            int mouseY=event.button.y;
-            int boardX = (1200 - (COL * ICON_SIZE)) / 2;
-            int boardY = (950 - (ROW * ICON_SIZE)) / 2;
+            int boardX = ( SCREEN_WIDTH- (COL * ICON_SIZE)) / 2;
+            int boardY = (SCREEN_HEIGHT - (ROW * ICON_SIZE)) / 2;
          
            if (mouseX >= boardX && mouseX <= boardX + COL * ICON_SIZE &&
              mouseY >= boardY && mouseY <= boardY + ROW * ICON_SIZE) {

@@ -1,9 +1,8 @@
-
 #include "graphics.hpp"
+#include "constants.h"
 #include <iostream>
 using namespace std;
 Graphics::Graphics() : window(nullptr),renderer(nullptr){}
-
 Graphics::~Graphics(){
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);
@@ -14,7 +13,7 @@ bool Graphics::init(){
         cout<<"SDL error"<<SDL_GetError()<<endl;
         return false;
     }
-    window=SDL_CreateWindow("Pikachu Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1200, 950, SDL_WINDOW_SHOWN);
+    window=SDL_CreateWindow("Pikachu Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH,SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
     if(!window){
         cout<<"Can't open the window,error"<<SDL_GetError()<<endl;
         return false;
@@ -45,7 +44,7 @@ void Graphics::renderTexture(SDL_Texture *texture, int x, int y,int w,int h){
     SDL_RenderCopy(renderer, texture, nullptr, &dst);
 }
 void Graphics::clear(){
-    SDL_SetRenderDrawColor(renderer, 255,255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, colorAlpha,colorAlpha,colorAlpha,colorAlpha);
     SDL_RenderClear(renderer);
 }
 void Graphics::present(){
